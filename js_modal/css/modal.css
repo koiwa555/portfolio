@@ -1,0 +1,637 @@
+/* -----------------------------------------------------------------------
+ base
+*----------------------------------------------------------------------- */
+/*
+ダブルタップによるズームを抑止したいけど iPhone の safari で効かない…
+また、対象要素を絞って設定した方がよいらしいので、一旦コメントアウトしておく。
+*/
+/* html,
+body {
+  touch-action: manipulation;
+} */
+html.is-modal_opened,
+body.is-modal_opened {
+  height: 100%;
+/* spのみ */
+  overflow: hidden;
+}
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+}
+.is-modal_slid {
+  transition: none;
+}
+.modal-container {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  height: 100%;
+  left: 0;
+  line-height: 1;
+  margin: 0;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  padding: 0;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  visibility: hidden;
+  width: 100%;
+  z-index: 999;
+}
+.modal-container.is-modal_opened {
+  max-height: none;
+  opacity: 1;
+  visibility: visible;
+}
+.modal-overlay {
+  background: rgba(0, 0, 0, .3);
+  height: 120%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  visibility: hidden;
+  width: 100%;
+  z-index: 1;
+}
+.modal-overlay.is-modal_opened {
+  visibility: visible;
+}
+.modal,
+.modal-close_layer {
+  height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+}
+.modal {
+  position: absolute;
+  z-index: 1;
+}
+.modal-close_layer {
+  position: fixed;
+  z-index: 0;
+}
+
+
+/* --------------------------------------------------------------------------------
+ modal-content_wrap
+-------------------------------------------------------------------------------- */
+.modal-content_wrap {
+  background: #f0f5f9;
+  background-color: transparent;
+  font-size: 16px;
+  font-weight: normal;
+  left: 50%;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%) scale(.8);
+  transform: translate(-50%, -50%) scale(.8);
+  -webkit-transition: transform .2s ease, opacity .5s ease;
+  transition: transform .2s ease, opacity .5s ease;
+  visibility: hidden;
+  width: 96%;
+  z-index: 10;
+}
+.has-modal_normal_btn .modal-content_wrap {
+  /* 通常ボタンの影の分の位置合わせ */
+  margin: 6px 0 0;
+}
+.is-modal_opened .modal-content_wrap {
+  opacity: 1.0;
+  -webkit-transform: translate(-50%, -50%) scale(1.0);
+  transform: translate(-50%, -50%) scale(1.0);
+  visibility: visible;
+}
+/* スライドの左右ボタンをクリックしたとき */
+.is-modal_slid .modal-content_wrap {
+  -webkit-transition: none;
+  transition: none;
+}
+.modal-content {
+  background-color: #fff;
+  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, .3);
+  -ms-box-shadow: 0 0 4px rgba(0, 0, 0, .3);
+  box-shadow: 0 0 4px rgba(0, 0, 0, .3);
+  padding: 20px;
+  position: relative;
+}
+@media screen and (min-width: 480px) {
+  .modal-content_wrap {
+    max-width: 600px;
+    width: 90%;
+  }
+}
+
+
+/* ------------------------------------------------------------
+ is-modal_inside_scroll
+------------------------------------------------------------ */
+/*
+③ 78px
+ブラウザ幅480px以上のときの normalBtn の高さ
+*/
+.is-modal_inside_scroll .modal-content_wrap {
+  /*
+  モーダルの高さがブラウザの高さよりも高い場合は、ブラウザの
+  top 60px と bottom 60px の余白を取ってモーダルを設置している。
+  */
+  /* 上下 60px の余白 */
+  height: calc(100% - 120px);
+  top: 60px;
+  -webkit-transform: translate(-50%, 0) scale(.8);
+  transform: translate(-50%, 0) scale(.8);
+}
+.is-modal_opened.is-modal_inside_scroll .modal-content_wrap {
+  -webkit-transform: translate(-50%, 0) scale(1.0);
+  transform: translate(-50%, 0) scale(1.0);
+}
+.is-modal_inside_scroll .modal-content {
+  height: 100%;
+  overflow-y: scroll;
+}
+.is-modal_inside_scroll.has-modal_normal_btn .modal-content,
+/* 常時スクロールバーを表示する場合 */
+.is-modal_inside_scroll.has-modal_normal_btn[data-modal-scroll='always'] .modal-content {
+  /* 親の高さ 100% から [modal-btn_wrap] 66px 分の高さをマイナスする */
+  height: calc(100% - 66px);
+}
+.is-modal_inside_scroll[data-modal-scroll='always'] .modal-content {
+  height: 100%;
+}
+@media screen and (min-width: 480px) {
+  .is-modal_inside_scroll.has-modal_normal_btn .modal-content,
+  .is-modal_inside_scroll.has-modal_normal_btn[data-modal-scroll='always'] .modal-content {
+    height: calc(100% - 78px);
+  }
+}
+
+
+/* ------------------------------------------------------------
+ is-modal_outside_scroll
+------------------------------------------------------------ */
+.is-modal_outside_scroll .modal {
+  overflow-y: scroll;
+}
+.is-modal_outside_scroll .modal-content_wrap {
+  /*
+  SPではアドレスバーなどを考慮する場合は [vh] ではなく[%] を用いる必要がある。
+  ただし、高さピッタリでなくてよい(100% or 100vh 以下)なら [vh] の方が扱いやすい。
+  min-height の単位が % の親を持ち、子も min-height で単位を % にすると高さが取れない。
+  height は構成上指定できないので vh でざっくりと対応する。
+  */
+  min-height: 70vh;
+  /* 下部の余白 */
+  padding: 0 0 60px;
+  top: 60px;
+  -webkit-transform: translate(-50%, 0) scale(.8);
+  transform: translate(-50%, 0) scale(.8);
+}
+.is-modal_opened.is-modal_outside_scroll .modal-content_wrap {
+  -webkit-transform: translate(-50%, 0) scale(1.0);
+  transform: translate(-50%, 0) scale(1.0);
+  /*
+  +30px は modal-outside_close_block の半分の高さ
+  ↓
+  上下中央にしてしまうと、高さを狭めたときに要素がど真ん中に配置されてしまって
+  スクロールできなくなってしまうので NG でした…
+  */
+  /* -webkit-transform: translate(-50%, calc(-50% + 30px)) scale(1.0);
+  transform: translate(-50%, calc(-50% + 30px)) scale(1.0); */
+}
+/* モーダルを開いたままリサイズしたとき */
+.is-open-resized .modal-content_wrap {
+  transition: none;
+}
+/* 下部の余白と同等の高さで閉じるブロックを作成 */
+.modal-outside_close_block {
+  bottom: 0;
+  display: none;
+  height: 60px;
+  left: 0;
+  position: absolute;
+  width: 100%;
+}
+.is-modal_outside_scroll .modal-outside_close_block {
+  display: block;
+}
+/*
+outside の場合常時スクロールバーを表示ではない場合は min-height の
+指定は不要なので記述が無い。
+*/
+.is-modal_outside_scroll[data-modal-scroll='always'] .modal-content {
+  /* [.is-modal_outside_scroll .modal-content_wrap] と揃える */
+  min-height: 70vh;
+}
+/* 常時スクロールバーを表示する場合 */
+.is-modal_outside_scroll.has-modal_normal_btn[data-modal-scroll='always'] .modal-content {
+  /* [modal-btn_wrap] の高さ分マイナスする */
+  min-height: calc(70vh - 66px);
+}
+@media screen and (min-width: 480px) {
+  .is-modal_outside_scroll .modal-content_wrap {
+    /* PCでは [%] でも [vh] でもどちらでもおｋ */
+    /* 100vh から top: 60px; 分マイナスする */
+    min-height: calc(100vh - 60px);
+  }
+  .is-modal_outside_scroll[data-modal-scroll='always'] .modal-content {
+    /*
+    100vh から top: 60px; と [modal-outside_close_block] の 60px 分マイナスする
+    top: 60px; と [modal-outside_close_block] の 60px を合わせて 120px
+    */
+    min-height: calc(100vh - 120px);
+  }
+  .is-modal_outside_scroll.has-modal_normal_btn[data-modal-scroll='always'] .modal-content {
+    /* 100vh から上下の 60px の余白と [modal-btn_wrap] の高さ分マイナスする */
+    min-height: calc(100vh - 120px - 78px);
+  }
+}
+
+
+/* ------------------------------------------------------------
+ ie 11 fix
+------------------------------------------------------------ */
+@media (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .is-modal_outside_scroll .modal {
+    overflow-x: hidden;
+  }
+}
+
+
+/* --------------------------------------------------------------------------------
+ modal-btn
+-------------------------------------------------------------------------------- */
+.modal-btn_wrap {
+  letter-spacing: -.4em;
+  margin: -6px 0 0;
+  padding: 12px 0 8px;
+}
+.modal-close_btn,
+.modal-prev_btn,
+.modal-next_btn {
+  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, .3);
+  -ms-box-shadow: 0 0 4px rgba(0, 0, 0, .3);
+  box-shadow: 0 0 4px rgba(0, 0, 0, .3);
+  display: inline-block;
+  letter-spacing: 0;
+  -webkit-transition: background-color .2s linear;
+  transition: background-color .2s linear;
+  vertical-align: middle;
+}
+.modal-close_btn,
+.modal-prev_btn,
+.modal-next_btn {
+  height: 46px;
+}
+.modal-close_btn {
+  background-color: #777;
+  color: #fff;
+  display: inline-block;
+  font-size: 13px;
+  margin: 0 4px 0;
+  position: relative;
+  text-align: center;
+  text-decoration: none;
+  width: 100%;
+}
+.modal-container[data-modal-group] .modal-close_btn {
+  width: calc(52% - 8px);
+}
+.modal-close_btn:hover,
+.modal-prev_btn:hover,
+.modal-next_btn:hover {
+  background: #aaa;
+}
+.modal-close_btn-text {
+  display: inline-block;
+  line-height: 48px;
+  padding-left: 20px;
+  position: relative;
+}
+.modal-close_btn-text::before,
+.modal-close_btn-text::after {
+  background-color: #fff;
+  content: '';
+  display: block;
+  height: 22px;
+  left: 0;
+  margin-top: -12px;
+  position: absolute;
+  top: 50%;
+  width: 3px;
+}
+.modal-close_btn-text::before {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.modal-close_btn-text::after {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.modal-prev_btn,
+.modal-next_btn {
+  background-color: #777;
+  display: inline-block;
+  position: relative;
+  width: 24%;
+}
+.modal-prev_btn.is-modal-btn_un_clickable,
+.modal-next_btn.is-modal-btn_un_clickable {
+  background-color: #484848;
+  cursor: default;
+  pointer-events: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+.modal-prev_btn.is-modal-btn_un_clickable::before,
+.modal-next_btn.is-modal-btn_un_clickable::before {
+  border-color: #6b6b6b;
+}
+.modal-prev_btn::before,
+.modal-next_btn::before {
+  border-bottom: 3px solid #fff;
+  border-right: 3px solid #fff;
+  content: '';
+  display: block;
+  height: 14px;
+  position: absolute;
+  top: 50%;
+  width: 14px;
+}
+.modal-prev_btn::before {
+  left: 42%;
+  -webkit-transform: translateY(-50%) rotate(135deg);
+  transform: translateY(-50%) rotate(135deg);
+}
+.modal-next_btn::before {
+  right: 42%;
+  -webkit-transform: translateY(-50%) rotate(-45deg);
+  transform: translateY(-50%) rotate(-45deg);
+}
+@media screen and (min-width: 480px) {
+  .modal-btn_wrap {
+    margin: 0;
+  }
+  .modal-close_btn,
+  .modal-prev_btn,
+  .modal-next_btn {
+    height: 58px;
+  }
+  .modal-close_btn {
+    font-size: 16px;
+    font-weight: bold;
+    height: 58px;
+    line-height: 62px;
+  }
+  .modal-container[data-modal-group] .modal-close_btn {
+    width: calc(44% - 8px);
+  }
+  .modal-close_btn-text {
+    padding-left: 24px;
+  }
+  .modal-close_btn-text::before,
+  .modal-close_btn-text::after {
+    height: 24px;
+    margin-top: -13px;
+    width: 4px;
+  }
+  .modal-prev_btn,
+  .modal-next_btn {
+    width: 28%;
+  }
+  .modal-prev_btn::before,
+  .modal-next_btn::before {
+    border-bottom: 4px solid #fff;
+    border-right: 4px solid #fff;
+    height: 20px;
+    width: 20px;
+  }
+}
+
+
+/* --------------------------------------------------------------------------------
+ modal-float-btn
+-------------------------------------------------------------------------------- */
+.modal-float-btn_wrap {
+  height: 100%;
+  left: 0;
+  letter-spacing: -.4em;
+  /*
+  フロートボタンの position の起点となる要素が modal-content_wrap であり、
+  幅と高さがその要素全体に広がる構成なので下の要素をクリック
+  させるために必要な記述
+  */
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+.modal-float-prev_btn,
+.modal-float-next_btn,
+.modal-float-close_btn {
+  display: inline-block;
+  /*
+  親要素が pointer-events: none; なので、子要素である
+  フロートボタンをクリックできるようにするために必要な記述
+  */
+  pointer-events: auto;
+  vertical-align: middle;
+}
+.modal-float-close_btn {
+  background-color: #777;
+  border-radius: 50%;
+  color: #fff;
+  display: inline-block;
+  height: 38px;
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  -webkit-transition: transform .2s linear;
+  transition: transform .2s linear;
+  width: 38px;
+  z-index: 15;
+}
+.modal-float-close_btn:hover {
+  transform: scale(1.25);
+}
+.modal-float-close_btn::before,
+.modal-float-close_btn::after {
+  background-color: #fff;
+  content: '';
+  display: block;
+  height: 21px;
+  left: 50%;
+  margin: -10px 0 0 -2px;
+  position: absolute;
+  top: 50%;
+  width: 3px;
+}
+.modal-float-close_btn::before {
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.modal-float-close_btn::after {
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+.modal-float-close_btn-text {
+  display: none;
+}
+.modal-float-prev_btn,
+.modal-float-next_btn {
+  display: inline-block;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  width: 40px;
+  z-index: 14;
+}
+.modal-float-prev_btn {
+  left: 0;
+}
+.modal-float-next_btn {
+  right: 0;
+}
+.modal-float-prev_btn.is-modal-btn_un_clickable,
+.modal-float-next_btn.is-modal-btn_un_clickable {
+  cursor: default;
+  pointer-events: none;
+}
+.modal-float-prev_btn::before,
+.modal-float-next_btn::before {
+  border-bottom: 3px solid #777;
+  border-right: 3px solid #777;
+  content: '';
+  display: block;
+  height: 18px;
+  margin: 9px 0 0;
+  position: absolute;
+  top: 50%;
+  -webkit-transition: transform .2s linear;
+  transition: transform .2s linear;
+  width: 18px;
+}
+.modal-float-prev_btn::before {
+  left: 30%;
+  -webkit-transform: translateY(-50%) rotate(135deg);
+  transform: translateY(-50%) rotate(135deg);
+}
+.modal-float-next_btn::before {
+  right: 30%;
+  -webkit-transform: translateY(-50%) rotate(-45deg);
+  transform: translateY(-50%) rotate(-45deg);
+}
+.modal-float-prev_btn:hover::before {
+  -webkit-transform: translateY(-50%) rotate(135deg) scale(1.2);
+  transform: translateY(-50%) rotate(135deg) scale(1.2);
+}
+.modal-float-next_btn:hover::before {
+  -webkit-transform: translateY(-50%) rotate(-45deg) scale(1.2);
+  transform: translateY(-50%) rotate(-45deg) scale(1.2);
+}
+.modal-float-prev_btn.is-modal-btn_un_clickable::before,
+.modal-float-next_btn.is-modal-btn_un_clickable::before {
+  border-color: #ccc;
+  transition: none;
+}
+.modal-float-prev_btn.is-modal-btn_un_clickable:hover::before {
+  -webkit-transform: translateY(-50%) rotate(135deg);
+  transform: translateY(-50%) rotate(135deg);
+}
+.modal-float-next_btn.is-modal-btn_un_clickable:hover::before {
+  -webkit-transform: translateY(-50%) rotate(-45deg);
+  transform: translateY(-50%) rotate(-45deg);
+}
+@media screen and (min-width: 480px) {
+  .modal-float-close_btn {
+    height: 46px;
+    right: 14px;
+    top: 14px;
+    width: 46px;
+  }
+  .modal-float-close_btn::before,
+  .modal-float-close_btn::after {
+    height: 25px;
+    margin: -12px 0 0 -2px;
+    width: 4px;
+  }
+  .modal-float-close_btn:hover {
+    transform: scale(1.3);
+  }
+  .modal-float-prev_btn::before,
+  .modal-float-next_btn::before {
+    border-bottom: 5px solid #777;
+    border-right: 5px solid #777;
+    height: 22px;
+    margin: 11px 0 0;
+    width: 22px;
+  }
+  .modal-float-prev_btn::before {
+    left: 42%;
+  }
+  .modal-float-next_btn::before {
+    right: 42%;
+  }
+}
+
+
+/* ------------------------------------------------------------
+ is-modal_inside_scroll
+------------------------------------------------------------ */
+/*
+ie 11 のみ非対応
+モーダルの高さがブラウザの高さよりも高いときに、モーダルコンテンツに
+対してスクロールバーを設置する場合にて、フロートボタンを
+モーダルコンテンツのスクロールの追従から独立させて固定位置で表示させるcss
+
+ie 11 の場合はフロートボタンに対して position: fixed を指定すると
+フロートボタンが modal-content_wrap を飛び出して body に出てしまう…
+なので ie 11 だけはモーダルコンテンツのスクロールに追従して
+位置が変わってしまう状態。
+
+※モーダルコンテンツのスクロールに追従させる場合は下記をまとめて
+  コメントアウトすればおｋ
+*/
+.is-modal_inside_scroll .modal-float-btn_wrap {
+  position: fixed;
+}
+.is-modal_inside_scroll.has-modal_normal_btn .modal-float-btn_wrap {
+  /*
+  .modal-float-btn_wrap を position: fixed にしたことで、親要素の高さを
+  取得する際に、通常ボタン分の高さも含めて取得してしまうようになった。
+  恐らく不具合的なもので、直近の先祖要素かつ、position が
+  absolute の高さを取得してしまうやつ…だと思う。
+  そこで、通常ボタンが生成・表示されているときは、ボタン分の高さを除外
+  してやることで、フロートボタンがモーダルコンテンツの中央に
+  固定表示されるようにした。
+  */
+  height: calc(100% - 66px);
+}
+@media screen and (min-width: 480px) {
+  .is-modal_inside_scroll.has-modal_normal_btn .modal-float-btn_wrap {
+    height: calc(100% - 78px);
+  }
+}
+
+
+/* ------------------------------------------------------------
+ is-modal_inside_scroll
+ ie 11 fix
+------------------------------------------------------------ */
+@media (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .is-modal_inside_scroll .modal-float-btn_wrap {
+    position: absolute;
+  }
+  .is-modal_inside_scroll.has-modal_normal_btn .modal-float-btn_wrap {
+    height: 100%;
+  }
+}
+
+

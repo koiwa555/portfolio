@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>ピュアJavaScriptでスムーススクロール</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body id="body">
+  
+  <header id="header">
+    <h1 class="large_head">ピュアJavaScriptでスムーススクロール</h1>
+    <div id="floatHeader">フロートHeader</div>
+  </header>
+  
+  <div id="mainVisual">
+    <select id="easingSelect" class="selector">
+      <option value="linear">linear</option>
+      <option value="easeOutExpo">easeOutExpo</option>
+      <option value="easeInQuad">easeInQuad</option>
+      <option value="easeOutQuad">easeOutQuad</option>
+      <option value="easeInOutQuad">easeInOutQuad</option>
+      <option value="easeInSine">easeInSine</option>
+      <option value="easeOutSine">easeOutSine</option>
+      <option value="easeInOutSine">easeInOutSine</option>
+      <option value="easeInCubic">easeInCubic</option>
+      <option value="easeOutCubic">easeOutCubic</option>
+      <option value="easeInOutCubic">easeInOutCubic</option>
+    </select>
+  </div>
+  
+  <div id="floatPageLinkWrap" class="float_page_link_wrap">
+    <p>途中からフロートするheader</p>
+    <ul id="floatPageLink" class="is-inline_block_wrap">
+      <li class="is-inline_block"><a href="#floatPageLinkWrap">フロート前 へ</a></li>
+      <li class="is-inline_block"><a href="#b10">10 へ</a></li>
+    </ul>
+  </div>
+  
+  <div class="box box-odd">1</div>
+  <div class="box box-even">2</div>
+  <div class="box box-odd">3</div>
+  <div class="box box-even">4</div>
+  <div id="b5" class="box box-odd">5</div>
+  <div class="box box-even">6</div>
+  <div class="box box-odd">7</div>
+  <div class="box box-even">8</div>
+  <div class="box box-odd">9</div>
+  <div id="b10" class="box box-even">10</div>
+  <div class="box box-odd">余白</div>
+  
+  <a id="floatToTop" href="#">
+    <span>Topへ<br>戻る</span>
+  </a>
+  
+  <a id="floatToFooter" href="#footer">
+    <span>最後へ</span>
+  </a>
+  
+  <div id="floatFooter">
+    <p>ブラウザ幅583px以下でフロート</p>
+    <ul class="is-inline_block_wrap">
+      <li class="is-inline_block"><a href="#mainVisual">メインビジュアル へ</a></li>
+      <li class="is-inline_block"><a href="#b5">5 へ</a></li>
+    </ul>
+  </div>
+  
+  <a href="#body"></a>
+  <footer id="footer">ピュアJavaScriptでスムーススクロール</footer>
+  
+  <script src="js/float_scroll.js"></script>
+  <script>
+    /*
+    var floatOptions = [
+      {
+        // フロートさせる要素の ID 名 ※必須
+        // [ID 名]
+        //
+        id: 'floatPageLink',
+        
+        // フロート要素を表示する位置
+        // [数値]・[対象の ID 名]・[null (常時表示)]・[記述無し (常時表示)]
+        //
+        switchPosition: 'floatPageLink',
+        
+        // 表示させたいブラウザ幅
+        // 0番目の要素：['max-width']・['min-width']
+        // 1番目の要素：[数値]
+        // [記述無し (常時表示)]
+        //
+        displayWidth: ['max-width', 583],
+        
+        // フロート要素がフロートする前の高さを、フロート時に指定した要素に付け足す。
+        // 『addHeightDirection』とセットで指定する
+        // [対象の ID 名]・[記述無し]
+        //
+        addHeightTargetId: 'mainVisual',
+        
+        // 高さを付け足す方向
+        // 『addHeightTargetId』とセットで指定する
+        // [top]・[bottom]・[記述無し]
+        //
+        addHeightDirection: 'top',
+        
+        // head 側で先行してフロートしている要素の ID 名を指定すると、その下にツライチでフロートする
+        // [対象の ID 名]・[記述無し]
+        //
+        stackTargetId: 'floatHeader',
+      }
+    ];
+    */
+    
+    var setFloatOptions = function() {
+      var floatOptions = [
+        {
+          id: 'floatHeader',
+          switchPosition: 'floatHeader',
+          addHeightTargetId: 'header',
+          addHeightDirection: 'bottom',
+        },
+        {
+          id: 'floatPageLink',
+          switchPosition: 'floatPageLink',
+          addHeightTargetId: 'floatPageLinkWrap',
+          addHeightDirection: 'top',
+          stackTargetId: 'floatHeader',
+        },
+        {
+          id: 'floatFooter',
+          switchPosition: 100,
+          displayWidth: ['max-width', 583],
+          addHeightTargetId: 'footer',
+          addHeightDirection: 'bottom',
+        },
+        {
+          id: 'floatToTop',
+          switchPosition: 300,
+        },
+        {
+          id: 'floatToFooter',
+          switchPosition: 0,
+        }
+      ];
+      floatContent(floatOptions);
+    };
+    setFloatOptions();
+    
+    
+    
+    /*
+    var smoothScrollOptions = {
+      // easing関数を選択する
+      // [linear]・[easeOutExpo]・[easeInQuad]・[easeOutQuad]・[easeInOutQuad]
+      // ・[easeInSine]・[easeOutSine]・[easeInOutSine]・[easeInCubic]
+      // ・[easeOutCubic]・[easeInOutCubic]・[記述無し (linear)]
+      //
+      easing: 'linear',
+      // 移動速度のプロパティ
+      duration: {
+        // リンク先への移動速度
+        // [数値]・[記述無し (1000)]
+        //
+        anchor: 600,
+        
+        // URLのハッシュリンクでの移動速度
+        // [数値]・[記述無し (anchorで指定した数値 or 1000)]
+        //
+        urlHash: 0,
+      },
+      // 動的要素対応のプロパティ
+      dynamic: {
+        // 動的要素をサポートするか否か
+        // [true]・[false]・[記述無し]
+        //
+        support: true,
+        // 動的要素を取得するためのイベントの起点
+        // [id名]・[記述無し]
+        // [記述無し] で初期値の [document] となる
+        parentId: 'body',
+      },
+      // head側にフロートする要素のプロパティ
+      floatTopElem: [
+        {
+          // head 側にフロートする要素のID名
+          // [ID名]・[記述無し]
+          id: 'floatHeader',
+          
+          // 常時フロートしているかどうか
+          // [true]・[false]・[記述無し]
+          alwaysFloated: false,
+        }
+      ],
+      // フロート要素に付与するクラス名のプロパティ
+      floatStatus: {
+        // フロート要素がフロートしているときに付与されるクラス
+        // [class名]・[記述無し (is-float_floated)]
+        //
+        floatedClass: 'is-float_floated',
+        // フロート要素が表示したいブラウザ幅のときに付与されるクラス
+        // [class名]・[記述無し (is-float_showed)]
+        //
+        showedClass: 'is-float_showed',
+      },
+      // イベントの発火タイミングをバブリングフェーズからキャプチャフェーズに変更する
+      // addEventListener() の第3引数『capture』を[true]にする
+      //
+      // BBSで他のメソッドとの兼ね合いで実装したような覚えがある…
+      // デバイス幅で要素のアンカークリックしてもスクロールしたり
+      // しなかったり…って処理のためだったかな…？？？
+      eventUseCapture: false
+    };
+    */
+    
+    var setSmoothScrollOptions = function() {
+      var smoothScrollOptions = {
+        easing: 'linear',
+        duration: {
+          anchor: 600,
+          urlHash: 0,
+        },
+        floatTopElem: [
+          {
+            id: 'floatHeader',
+            alwaysFloated: false,
+          },
+          {
+            id: 'floatPageLink',
+            alwaysFloated: false,
+          }
+        ],
+        eventUseCapture: false
+      };
+      smoothScroll(smoothScrollOptions);
+    };
+    setSmoothScrollOptions();
+    
+  </script>
+  
+</body>
+</html>

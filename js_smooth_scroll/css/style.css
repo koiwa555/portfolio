@@ -1,0 +1,218 @@
+@charset 'UTF-8';
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+ul {
+  line-height: 0;
+  width: 100%;
+}
+li {
+  display: inline-block;
+  width: 50%;
+}
+a {
+  display: block;
+  font-weight: bold;
+/* text-decoration: none; */
+  width: 100%;
+}
+.is-inline_block_wrap {
+  letter-spacing: -.4em;
+}
+.is-inline_block {
+  letter-spacing: 0;
+}
+#header {
+  background: #247ade;
+}
+.large_head {
+  background: #000;
+  color: #fff;
+  font-size: 13px;
+  font-weight: normal;
+  height: 22px;
+  padding: 5px 0 4px;
+}
+#floatHeader,
+#floatPageLink {
+  opacity: .7;
+  z-index: 10;
+}
+#floatHeader {
+  background: #247ade;
+  color: #fff;
+  font-weight: bold;
+  height: 60px;
+  padding: 22px 0;
+  transition: padding .2s ease;
+  width: 100%;
+}
+#floatHeader.is-float_showed.is-float_floated {
+  height: 40px;
+  left: 0;
+  padding: 12px 0 13px;
+  position: fixed;
+  top: 0;
+}
+#mainVisual {
+  background: #b4d2d6;
+  height: 0;
+  padding: 0 0 40%;
+  width: 100%;
+}
+.float_page_link_wrap,
+#floatPageLink {
+  background: #fff;
+}
+.float_page_link_wrap p {
+  border-top: 1px solid #ccc;
+  font-size: 13px;
+  padding: .4em 0;
+}
+#floatPageLink {
+  /* ずれ対策に必須！ */
+  overflow: hidden;
+  width: 100%;
+}
+#floatPageLink.is-float_showed.is-float_floated {
+  left: 0;
+  position: fixed;
+  top: 40px;
+}
+#floatPageLink a {
+  border: 1px solid #ccc;
+  font-size: 14px;
+  font-weight: bold;
+  padding: .4em 1em .5em;
+}
+.box {
+  color: #fff;
+  font-size: 40px;
+  height: 600px;
+  line-height: 600px;
+  margin: 0 auto;
+  text-align: center;
+  width: 100%;
+}
+.box-odd {
+  background: #55595c;
+}
+.box-even {
+  background: #bcbfc0;
+}
+#floatFooter {
+  background: #000;
+  bottom: 0;
+  color: #fff;
+  left: 0;
+  margin: 0 auto;
+  position: static;
+  -webkit-transition: .2s ease;
+  transition: .2s ease;
+  width: 100%;
+  z-index: 10;
+}
+#floatFooter.is-float_showed.is-float_floated {
+  margin: 0 auto;
+}
+#floatFooter p {
+  background: #666;
+  font-size: 13px;
+  padding: .5em 1em .4em;
+}
+#floatFooter li:nth-of-type(1) {
+  border-right: 1px solid #fff;
+}
+#floatFooter a {
+  color: #fff;
+  font-size: 14px;
+  padding: .9em 1em 1em;
+}
+#floatToTop,
+#floatToFooter {
+  background: #f00;
+  border-radius: 50%;
+  color: #fff;
+  height: 60px;
+  line-height: 1.3;
+  position: fixed;
+  right: 0;
+  -webkit-transition: .2s ease;
+  transition: .2s ease;
+  width: 60px;
+  z-index: 10;
+}
+#floatToTop {
+  bottom: 0;
+  margin: 0 5% -60px 0;
+}
+#floatToFooter {
+  margin: -60px 5% 0 0;
+  top: 0;
+}
+#floatToTop span,
+#floatToFooter span {
+  display: block;
+  font-size: 14px;
+  left: 50%;
+  line-height: 1.3;
+  position: absolute;
+  text-decoration: underline;
+  top: 50%;
+  width: 100%;
+}
+#floatToTop span {
+  margin: -1.2em 0 0 -2.1em;
+}
+#floatToFooter span {
+  margin: -.6em 0 0 -2.1em;
+}
+#floatToTop.is-float_showed.is-float_floated {
+  margin: 0 5% 140px 0;
+}
+#floatToFooter.is-float_showed.is-float_floated {
+  margin: 140px 5% 0 0;
+}
+#footer {
+  background: #247ade;
+  color: #fff;
+  padding: 6.2em 1em 6.1em;
+}
+.selector {
+  background: #ff0;
+  box-shadow: 5px 5px 4px -2px rgba(0, 0, 0, .4);
+  font-size: 16px;
+  height: 36px;
+  left: 50%;
+  margin: -18px 0 0 -7.5em;
+  padding: .5em 1.5em .5em .2em;
+  position: fixed;
+  top: 50%;
+  width: 15em;
+  z-index: 1000;
+}
+@media screen and (max-width: 583px) {
+  #mainVisual {
+    padding: 0 0 50%;
+  }
+  #floatFooter {
+    bottom: 0;
+    color: #fff;
+    left: 0;
+    margin: 0 auto -100px;
+    position: fixed;
+    -webkit-transition: .2s ease;
+    transition: .2s ease;
+    width: 100%;
+    z-index: 10;
+  }
+  #floatFooter p {
+    display: none;
+  }
+}
+

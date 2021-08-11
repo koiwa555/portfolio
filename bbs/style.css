@@ -1,0 +1,576 @@
+/* --------------------------------------------------------------------------------
+ base
+-------------------------------------------------------------------------------- */
+*,
+html,
+body,
+header,
+main,
+footer,
+section,
+div,
+h1,
+p,
+ol,
+li,
+a,
+form,
+label,
+input,
+textarea,
+button {
+  box-sizing: border-box;
+  color: #0e0e0e;
+  letter-spacing: .05em;
+  line-height: 1.0;
+  margin: 0;
+  padding: 0;
+}
+.is-inline_block_wrap {
+  letter-spacing: -.4em;
+}
+html {
+  font-size: 100%;
+}
+body {
+  background: #f0f0f4;
+  overflow-y: scroll;
+  padding: 20px 0 220px;
+}
+header {
+  background: #000;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 999;
+}
+h1 {
+  color: #fff;
+  font-size: 13px;
+  line-height: 1.5;
+  margin: 0 auto;
+  padding: 4px 0 2px;
+  text-indent: -.5em;
+  width: 92%;
+}
+a {
+  text-decoration: none;
+}
+ol {
+  list-style: none;
+}
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: none;
+  border: none;
+  outline: none;
+}
+@media screen and (max-width: 767px) {
+  body {
+    padding: 20px 0 80px;
+  }
+  body.is-slid {
+    padding: 20px 0 260px;
+  }
+  h1 {
+    font-size: 11px;
+    padding: 3px 0 2px;
+    width: 96%;
+  }
+}
+
+
+/* --------------------------------------------------------------------------------
+
+-------------------------------------------------------------------------------- */
+.inner_wrap {
+  font-size: 16px;
+  max-width: 50em;
+}
+.inner {
+  margin: 0 auto;
+  width: 96%;
+}
+.post_list> li> .post_inner_wrap.is-hovered,
+.hover_posts_list.is-hovered> li {
+  background-color: rgba(0, 0, 0, .12);
+}
+.post_list li {
+  font-size: 16px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 0;
+}
+li.is-hovered {
+  z-index: 1;
+}
+.post_list li:last-of-type> .post_inner_wrap {
+  padding: 1.5em 1.5em 1.5em;
+}
+.post_inner_wrap {
+  border: 1px solid transparent;
+  letter-spacing: -.4em;
+  padding: 1.5em 1.5em 1.2em;
+  position: relative;
+}
+.post_inner_wrap.is-hovered {
+  border-color: rgba(0, 0, 0, .1);
+  z-index: 1;
+}
+.post_inner_wrap.is-future {
+  font-size: 13px;
+  letter-spacing: .05em;
+}
+.post_list a,
+.post_list span {
+  display: inline-block;
+  letter-spacing: .05em;
+  vertical-align: middle;
+}
+.post_list a {
+  color: #00e;
+  text-decoration: underline;
+}
+.post_list a:hover {
+  text-decoration: underline;
+}
+.post_num,
+.post_user,
+.post_date {
+  margin: 4px 8px 4px 0;
+}
+.post_unique_id {
+  margin: 3px 0;
+}
+.post_user {
+  font-weight: bold;
+}
+span.post_user {
+  color: #008000;
+}
+.post_unique_id .hover_posts_list_wrap .hover_posts_list_wrap {
+  bottom: 0;
+  left: 100%;
+  right: auto;
+}
+.hover_posts_list li {
+  font-size: 13px;
+}
+.post_unique_id {
+  padding: 3px 2px 3px;
+}
+.post_unique_id.is-match_id {
+  background: #f3d655;
+}
+.post_unique_id .is-inactive,
+.match_id .is-inactive {
+  color: #0e0e0e;
+  pointer-events: none;
+  text-decoration: none;
+}
+.post_unique_id .is-disabled {
+  display: none;
+}
+.post_message {
+  letter-spacing: .05em;
+  line-height: 1.45;
+  padding: 12px 0 0;
+  word-break: break-all;
+}
+.match_id {
+  position: relative;
+}
+.hover_posts_list_wrap {
+  bottom: 100%;
+  left: 0;
+  padding: 0 0 1px;
+  position: absolute;
+  width: 70%;
+  z-index: 1;
+}
+.hover_posts_list_wrap .hover_posts_list_wrap {
+  margin: 0 0 0 -1px;
+  padding: 0 0 1px;
+  width: calc(100% + 2px);
+}
+.hover_posts_list {
+  background: #fffccc;
+  border: 1px solid rgba(0, 0, 0, .2);
+}
+.hover_overlay {
+  height: 100vh;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 0;
+}
+@media screen and (max-width: 767px) {
+  .inner {
+    width: 100%;
+  }
+  .hover_posts_list_wrap {
+    width: 92%;
+  }
+  .post_list li {
+    font-size: 14px;
+  }
+  .hover_posts_list li {
+    font-size: 11px;
+  }
+  .post_list li:not(:last-of-type) {
+    border-bottom: 1px solid #aaa;
+  }
+  .post_inner_wrap,
+  .post_list li:last-of-type> .post_inner_wrap {
+    padding: 1.5em 1.5em 1.6em;
+  }
+  .post_inner_wrap.is-future {
+    font-size: 11px;
+  }
+}
+
+
+/* --------------------------------------------------------------------------------
+post area
+-------------------------------------------------------------------------------- */
+footer {
+  background: #f0f0f4;
+  border-top: 1px solid #444;
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+}
+form {
+  padding: 0 6px 6px;
+  width: 100%;
+}
+.settings {
+  position: relative;
+}
+.settings input {
+  font-size: 14px;
+}
+.user,
+.email,
+.btn_wrap,
+.sage {
+  display: inline-block;
+  font-size: 14px;
+  vertical-align: middle;
+}
+.user,
+.email {
+  padding: 6px 10px 6px 0;
+}
+.settings input,
+.settings label {
+  letter-spacing: .05em;
+  vertical-align: middle;
+}
+.user input,
+.email input {
+  padding: .2em .2em .1em;
+}
+.email input:-moz-read-only {
+  background: #ccc;
+}
+.email input:read-only {
+  background: #ccc;
+}
+input:selected {
+  background: inherit;
+  color: inherit;
+}
+.user label,
+.email label {
+  margin: 0 .5em 0 0;
+}
+.sage label {
+  margin: 0 0 0 .5em;
+}
+#submit {
+  font-size: 12px;
+  height: 25px;
+  margin: -13px 0 0;
+  padding: 2px .5em;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 8em;
+}
+#message {
+  display: block;
+  font-size: 14px;
+  line-height: 1.4;
+  padding: .3em;
+  resize: none;
+  width: 100%;
+}
+#formSlideBtn {
+  display: none;
+}
+@media screen and (max-width: 767px) {
+  footer {
+    border-top: 1px solid #f0f0f4;
+    height: 44px;
+    transition: .2s ease;
+  }
+  footer.is-slid {
+    height: 218px;
+  }
+  form {
+    padding: 4px 10px 10px;
+  }
+  .email {
+    padding: 6px 0 6px;
+  }
+  .settings label,
+  .settings input,
+  #message {
+    font-size: 16px;
+  }
+  .user input,
+  .email input {
+    width: 13.5em;
+  }
+  .sage {
+    padding: 12px 12px 12px 0;
+  }
+  .btn_wrap {
+    display: block;
+  }
+  #submit {
+    height: 36px;
+    margin: 5px 0;
+    position: static;
+  }
+  #formSlideBtn {
+    background: #000;
+    display: block;
+    height: 44px;
+    position: relative;
+    width: 100%;
+  }
+  #formSlideBtn::before,
+  .svg-inline--fa {
+    opacity: 1.0;
+    transition: .1s ease;
+    visibility: visible;
+  }
+  #formSlideBtn::before {
+    background: #fff;
+    border-radius: 50%;
+    content: '';
+    display: block;
+    height: 32px;
+    left: 50%;
+    margin: -16px 0 0 -16px;
+    position: absolute;
+    top: 50%;
+    width: 32px;
+    z-index: 0;
+  }
+  #formSlideBtn::after {
+    border-bottom: 3px solid #fff;
+    border-right: 3px solid #fff;
+    content: '';
+    display: block;
+    height: 8px;
+    left: 50%;
+    margin: -10px 0 0 -8px;
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    transform: rotate(45deg);
+    transition: .45s ease-out;
+    visibility: hidden;
+    width: 8px;
+    z-index: 0;
+  }
+  .is-slid #formSlideBtn::after {
+    opacity: 1.0;
+    visibility: visible;
+  }
+  .is-slid #formSlideBtn {
+    height: 19px;
+  }
+  .svg-inline--fa {
+    fill: #000;
+    position: relative;
+    width: 20px;
+    z-index: 1;
+  }
+  .is-slid #formSlideBtn::before,
+  .is-slid .svg-inline--fa {
+    opacity: 0;
+    visibility: hidden;
+  }
+  #message {
+    height: 100px;
+  }
+}
+@media screen and (max-width: 583px) {
+  footer.is-slid {
+    height: 226px;
+  }
+  .user,
+  .email {
+    padding: 6px 0;
+    width: 100%;
+  }
+  .user {
+    margin: 0 3% 0 0;
+  }
+  .user label,
+  .email label {
+    display: inline-block;
+    margin: 0 .5em 0 0;
+    width: 4em;
+  }
+  #user,
+  #email {
+    width: calc(100% - 4.5em);
+  }
+  #message {
+    height: 70px;
+  }
+}
+@media screen and (max-width: 479px) {
+  form {
+    padding: 4px 8px 8px;
+  }
+}
+
+
+/* --------------------------------------------------------------------------------
+aside
+-------------------------------------------------------------------------------- */
+#sideNavBtn {
+  height: 110%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  visibility: hidden;
+  width: 100%;
+  z-index: 10;
+}
+#sideNavBtn.is-showed {
+  visibility: visible;
+}
+#sideNavListWrap {
+  bottom: 104px;
+  height: 100%;
+  margin: 0 -100px 0 0;
+  overflow-y: scroll;
+  position: fixed;
+  right: 0;
+  transition: .2s ease-out;
+  z-index: 2;
+}
+#sideNavBtn.is-showed #sideNavListWrap {
+  margin: 0 0 0 0;
+}
+#sideNavList {
+  background: #fefefe;
+  border-left: 1px solid #aaa;
+  /*
+  スマホ用に右下までナビをスクロールするための余白
+  */
+  padding: calc(100vh - 120px) 0 0;
+  position: relative;
+  z-index: 2;
+}
+.side_nav_list_item {
+  border-top: 1px solid #888;
+  display: block;
+  text-align: center;
+}
+.side_nav_list_item.is-hide {
+  display: none;
+}
+.side_nav_list_item a {
+  color: #0e0e0e;
+  display: block;
+  font-size: 10px;
+  height: 60px;
+  line-height: 61px;
+  text-shadow: 0 0 0 #000;
+  width: 40px;
+}
+#sideNavToggleBtn {
+  background: #2461ec;
+  bottom: 44px;
+  color: #fff;
+  display: none;
+  font-size: 10px;
+  height: 60px;
+  margin: 0 -40px 0 0;
+  padding: 28px 40px 0 0;
+  position: fixed;
+  right: 0;
+  text-shadow: 0 0 0 #fff;
+  transition: .2s ease-out;
+  visibility: visible;
+  width: 80px;
+  z-index: 2;
+}
+#sideNavToggleBtn.is-active {
+  display: block;
+}
+#sideNavBtn.is-showed #sideNavToggleBtn {
+  margin: 0;
+}
+#sideNavToggleBtn::before {
+  border-right: 2px solid #fff;
+  border-top: 2px solid #fff;
+  content: '';
+  display: block;
+  height: 9px;
+  left: 0;
+  margin: 0 0 0 17px;
+  position: absolute;
+  top: 15px;
+  transform: rotate(-135deg);
+  width: 9px;
+}
+#sideNavBtn.is-showed #sideNavToggleBtn::before {
+  margin: 0 0 0 11px;
+  transform: rotate(45deg);
+}
+#sideNavOverlay {
+  background: rgba(0, 0, 0, .15);
+  height: 110%;
+  left: 0;
+  margin: 0 0 0 100%;
+  position: fixed;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1;
+}
+#sideNavBtn.is-showed #sideNavOverlay {
+  margin: 0;
+  transition: .2s ease-out;
+}
+
+
+/* ------------------------------------------------------------
+ ie 11 fix
+------------------------------------------------------------ */
+@media (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  #sideNavListWrap {
+    /*
+    サイドナビが一切表示されなかったので対処
+    */
+    visibility: visible;
+    z-index: auto;
+  }
+}
+
+

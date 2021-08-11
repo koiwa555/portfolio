@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>ピュアJavaScriptでモーダル</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/modal.css">
+</head>
+<body>
+  
+  <section class="container">
+    <h1 class="main-head">ピュアJavaScriptでモーダル</h1>
+    
+    <div class="wrap">
+      <div class="modal-open_btn_wrap">
+        <button class="modal-open_btn modal-open_btn_group1" type="button" data-modal-id="sample1">モーダル 1<br>グループ 1</button>
+        <button class="modal-open_btn modal-open_btn_group1" type="button" data-modal-id="sample2">モーダル 2<br>グループ 1</button>
+        <button class="modal-open_btn modal-open_btn_group1" type="button" data-modal-id="sample3">モーダル 3<br>グループ 1</button>
+        <button class="modal-open_btn modal-open_btn_group1" type="button" data-modal-id="sample4">モーダル 4<br>グループ 1</button>
+        <button class="modal-open_btn modal-open_btn_group2" type="button" data-modal-id="sample5">モーダル 5<br>グループ 2</button>
+        <button class="modal-open_btn" type="button" data-modal-id="sample6">モーダル 6</button>
+        <button class="modal-open_btn modal-open_btn_group2" type="button" data-modal-id="sample7">モーダル 7<br>グループ 2</button>
+        <button class="modal-open_btn" type="button" data-modal-id="sample8">モーダル 8</button>
+      </div>
+      
+      <div id="sample1" class="modal-container" data-modal-group="group1" data-modal-scroll="always">
+        <div class="modal-content">
+          <div class="modal-content_inner">
+            <p class="modal-content_head">モーダル1<br>グループ1<br><br>常時スクロール対応のCSSを付与</p>
+            <a id="anchor" class="anchor">クリックで高さ可変</a>
+            <a id="anchor2" class="anchor">クリックで高さ可変</a>
+            <a id="anchor3" class="anchor">クリックで高さ可変</a>
+          </div>
+        </div>
+      </div>
+      <div id="sample2" class="modal-container" data-modal-group="group1">
+        <div class="modal-content">
+          <div class="modal-content_inner">
+            <p class="modal-content_head">モーダル2<br>グループ1</p>
+          </div>
+        </div>
+      </div>
+      <div id="sample3" class="modal-container" data-modal-group="group1">
+        <div class="modal-content">
+          <div class="modal-content_inner">
+            <p class="modal-content_head">モーダル3<br>グループ1</p>
+          </div>
+        </div>
+      </div>
+      <div id="sample4" class="modal-container" data-modal-group="group1">
+        <div class="modal-content">
+          <div class="modal-content_inner">
+            <p class="modal-content_head">モーダル4<br>グループ1</p>
+          </div>
+        </div>
+      </div>
+      <div id="sample5" class="modal-container" data-modal-group="group2">
+        <div class="modal-content">
+          <div class="modal-content_inner">
+            <p class="modal-content_head">モーダル5<br>グループ2</p>
+          </div>
+        </div>
+      </div>
+      <div id="sample6" class="modal-container">
+        <div class="modal-content">
+          <div class="modal-content_inner">
+            <p class="modal-content_head">モーダル6</p>
+          </div>
+        </div>
+      </div>
+      <div id="sample7" class="modal-container" data-modal-group="group2">
+        <div class="modal-content">
+          <div class="modal-content_inner">
+            <p class="modal-content_head">モーダル7<br>グループ2</p>
+          </div>
+        </div>
+      </div>
+      <div id="sample8" class="modal-container">
+        <div class="modal-content">
+          <div class="modal-content_inner">
+            <p class="modal-content_head">モーダル8</p>
+          </div>
+        </div>
+      </div>
+      
+      <section class="modal-options">
+        <h2 class="modal-options-head">モーダルのオプション設定</h2>
+        <ul class="modal-options-list">
+          <li>
+            <p class="modal-options-select_item">create.modalInner</p>
+            <p class="modal-options-details">
+              モーダルに必要な要素を自動 or 手動で生成または生成しない<br>
+              ※このプレビューでは [auto] 固定です
+            </p>
+            <!--
+              select要素に disabled を付けると選択不可になる
+            -->
+            <select name="create-modal-inner" class="modal-options-select" disabled>
+              <option value="auto">auto</option>
+              <option value="manual" disabled>manual</option>
+              <option value="" >(not create)</option>
+            </select>
+          </li>
+          
+          <li>
+            <p class="modal-options-select_item">create.normalBtn</p>
+            <p class="modal-options-details">
+              <span class="modal-options-details-always-showed-block">
+                モーダルの下端のボタンを自動 or 手動で生成または生成しない<br>
+                ※このプレビューでは [manual] は選べません
+              </span>
+              <span id="createNormalBtnNote" class="modal-options-details_note">
+                ※このプレビューはスライド対応のため<br>
+                ボタンを生成する必要があります<br>
+                『create.floatBtn』が [(not create)] なので<br>
+                こちらは強制で [auto] になります
+              </span>
+            </p>
+            <select id="createNormalBtn" class="modal-options-select" name="create-normal-btn" autocomplete="off">
+              <option value="auto">auto</option>
+              <option class="is-forced_changed" value="manual" disabled>manual</option>
+              <option value="">(not create)</option>
+            </select>
+          </li>
+          
+          <li>
+            <p class="modal-options-select_item">create.floatBtn</p>
+            <p class="modal-options-details">
+              <span class="modal-options-details-always-showed-block">
+                モーダルのフロートボタンを自動 or 手動で生成または生成しない<br>
+                ※このプレビューでは [manual] は選べません
+              </span>
+              <span id="createFloatBtnNote" class="modal-options-details_note">
+                ※このプレビューはスライド対応のため<br>
+                ボタンを生成する必要があります<br>
+                『create.normalBtn』が [(not create)] なので<br>
+                こちらは強制で [auto] になります
+              </span>
+            </p>
+            <select id="createFloatBtn" class="modal-options-select" name="create-float-btn" autocomplete="off">
+              <option value="auto">auto</option>
+              <option class="is-forced_changed" value="manual" disabled>manual</option>
+              <option value="">(not create)</option>
+            </select>
+          </li>
+          
+          <li>
+            <p class="modal-options-select_item">slide.use</p>
+            <p class="modal-options-details">
+              <span class="modal-options-details-always-showed-block">
+                モーダルにスライド機能を付与するか否か<br>
+                ※このプレビューでは [true] 固定です
+              </span>
+            </p>
+            <select class="modal-options-select" name="slide-use" disabled>
+              <option value="true">true</option>
+              <option class="is-forced_changed" value="false">false</option>
+            </select>
+          </li>
+          
+          <li>
+            <p class="modal-options-select_item">slide.loop</p>
+            <p class="modal-options-details">
+              <span class="modal-options-details-always-showed-block">
+                モーダルのスライド切り替えをループさせるか否か
+              </span>
+            </p>
+            <select id="slideLoop" class="modal-options-select" name="slide-loop" autocomplete="off">
+              <option value="true">true</option>
+              <option value="false" selected>false</option>
+            </select>
+          </li>
+          
+          <li>
+            <p class="modal-options-select_item">scroll.scrollBar</p>
+            <p class="modal-options-details">
+              <span class="modal-options-details-always-showed-block">
+                モーダルの高さがブラウザの高さより高いときに<br>
+                スクロールバーを表示する位置を指定する
+              </span>
+            </p>
+            <select id="scrollBar" class="modal-options-select" name="scroll-bar" autocomplete="off">
+              <option value="inside">inside</option>
+              <option value="outside">outside</option>
+            </select>
+          </li>
+          
+          <li>
+            <p class="modal-options-select_item">scroll.addFunction</p>
+            <p class="modal-options-details">
+              <span class="modal-options-details-always-showed-block">
+                モーダルを開いた状態でのスクロールに対する追加機能の選択<br>
+                [] or 存在しない：何も追加しない<br>
+                [stopBodyScroll]：スクロールを停止する<br>
+                [closeBodyScroll]：スクロールするとモーダルを閉じる
+              </span>
+              <span id="addFunctionNote" class="modal-options-details_note">
+                ※ [scroll.scrollBar] が [outside] の場合は [closeBodyScroll] を選べません
+              </span>
+            </p>
+            <select id="addFunction" class="modal-options-select" name="add-function" autocomplete="off">
+              <option value="">(not add)</option>
+              <option value="stopBodyScroll">stopBodyScroll</option>
+              <option value="closeBodyScroll" selected>closeBodyScroll</option>
+            </select>
+          </li>
+        </ul>
+        
+      </section>
+    </div><!-- .wrap -->
+  </section><!-- .container -->
+  
+  <script src="js/modal.js"></script>
+  <script>
+    var setModalOptions = function() {
+      var modalOptions = {
+        create: {
+          // ['auto'] ['manual']
+          modalInner: 'auto',
+          // ['auto'] ['manual'] [null] [No property]
+          // 初期値: [No property] (生成しない)
+          normalBtn: 'auto',
+          // ['auto'] ['manual'] [null] [No property]
+          // 初期値: [No property] (生成しない)
+          floatBtn: 'auto',
+        },
+        slide: {
+          // [true] [false] [No property]
+          // 初期値: [No property] (利用しない)
+          use: true,
+          // [true] [false] [No property]
+          // 初期値: [No property] (利用しない)
+          loop: false,
+        },
+        scroll: {
+          // ['inside'] ['outside'] [No property]
+          // 初期値: [No property] (insideスクロール)
+          scrollBar: 'inside',
+          // ['stopBodyScroll'] ['closeBodyScroll'] [null] [No property]
+          // 初期値: [No property] (何も追加しない)
+          addFunction: 'stopBodyScroll'
+        },
+        // モーダルの高さがブラウザの高さより高い場合に
+        // モーダルをスクロール可能にした際の上下の余白の合算(初期値:120)
+        //
+        // [number] [No property]
+        // 初期値: [No property] (120)
+        browserVerticalMargin: 120,
+        // モーダルのスクロール方法が ['outside'] の場合に追加される
+        // 下端の閉じる領域の高さ(初期値:60)
+        //
+        // [number] [No property]
+        // 初期値: [No property] (60)
+        outsideCloseBlockHeight: 60,
+        // モーダルを開くボタンのクラス名
+        //
+        // [str] [No property]
+        // 初期値: [No property] ('modal-open_btn')
+        openBtnClassName: 'modal-open_btn',
+        // 要素の存在チェックのスキップ
+        // [true] [false] [No property]
+        // 初期値: [No property] (チェックする)
+        skipCheckExists: false
+      };
+      modal(modalOptions);
+    };
+    setModalOptions();
+    
+    
+    
+    // IE用に select の値を初期化するメソッド
+    // firefox は select 要素に対して [autocomplete="off"] でキャッシュを
+    // 作成させないようにできたけど、IEには効かなかったので別途JSで対処する。
+    var setDefaultOptionsSelect = function() {
+      var createNormalBtn = document.getElementById('createNormalBtn'),
+          createFloatBtn = document.getElementById('createFloatBtn'),
+          slideLoop = document.getElementById('slideLoop'),
+          scrollBar = document.getElementById('scrollBar'),
+          addFunction = document.getElementById('addFunction');
+      
+      createNormalBtn.selectedIndex = 0;
+      createFloatBtn.selectedIndex = 0;
+      slideLoop.selectedIndex = 1;
+      scrollBar.selectedIndex = 0;
+      addFunction.selectedIndex = 1;
+    };
+    document.addEventListener('DOMContentLoaded', setDefaultOptionsSelect);
+    
+    
+    
+    // 高さの変わる要素用のメソッド
+    var toggleChangeElemHeight = function() {
+    var anchor = document.getElementsByClassName('anchor');
+      Object.keys(anchor).forEach(function(v) {
+        anchor[v].addEventListener('click', function() {
+          anchor[v].classList.toggle('is-change_height');
+        });
+      });
+    };
+    toggleChangeElemHeight();
+    
+  </script>
+  
+</body>
+</html>
