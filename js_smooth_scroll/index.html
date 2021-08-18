@@ -89,7 +89,7 @@
         // 1番目の要素：[数値]
         // [記述無し (常時表示)]
         //
-        displayWidth: ['max-width', 583],
+        activatedWidth: ['max-width', 583],
         
         // フロート要素がフロートする前の高さを、フロート時に指定した要素に付け足す。
         // 『addHeightDirection』とセットで指定する
@@ -129,7 +129,7 @@
         {
           id: 'floatFooter',
           switchPosition: 100,
-          displayWidth: ['max-width', 583],
+          activatedWidth: ['max-width', 583],
           addHeightTargetId: 'footer',
           addHeightDirection: 'bottom',
         },
@@ -197,10 +197,10 @@
         // [class名]・[記述無し (is-float_floated)]
         //
         floatedClass: 'is-float_floated',
-        // フロート要素が表示したいブラウザ幅のときに付与されるクラス
-        // [class名]・[記述無し (is-float_showed)]
+        // フロート要素として活性化させたいブラウザ幅のときに付与されるクラス
+        // [class名]・[記述無し (is-float_activated)]
         //
-        showedClass: 'is-float_showed',
+        activatedClass: 'is-float_activated',
       },
       // イベントの発火タイミングをバブリングフェーズからキャプチャフェーズに変更する
       // addEventListener() の第3引数『capture』を[true]にする

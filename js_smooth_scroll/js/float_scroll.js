@@ -57,20 +57,20 @@ var floatContent = function(opt){
     else v.switchPosition = 0;
     
     // 表示を開始するブラウザ幅
-    if (v.displayWidth) {
+    if (v.activatedWidth) {
       // 配列の 0 番目に値がない または 値はあるが max-width と min-width 以外の値の場合
       if (
-        !v.displayWidth[0] ||
-        (v.displayWidth[0] &&
-        !checkOptionIsAllowedStr(v.displayWidth[0], ['max-width', 'min-width']))
-      ) throw new Error('The first argument of [displayWidth] must be [\'max-width\'] or [\'min-width\'].');
+        !v.activatedWidth[0] ||
+        (v.activatedWidth[0] &&
+        !checkOptionIsAllowedStr(v.activatedWidth[0], ['max-width', 'min-width']))
+      ) throw new Error('The first argument of [activatedWidth] must be [\'max-width\'] or [\'min-width\'].');
       
       // 配列の 1 番目に値がない または 値はあるが 整数でない・型が数値でない場合
       if (
-        !v.displayWidth[1] ||
-        (v.displayWidth[1] &&
-        !checkOptionIsNum(v.displayWidth[1]))
-      ) throw new Error('The second argument of [displayWidth] must be [Positive integer].');
+        !v.activatedWidth[1] ||
+        (v.activatedWidth[1] &&
+        !checkOptionIsNum(v.activatedWidth[1]))
+      ) throw new Error('The second argument of [activatedWidth] must be [Positive integer].');
     }
     
     // フロート要素の高さを他の要素に付け足す
@@ -127,7 +127,7 @@ var floatContent = function(opt){
   // 指定要素にフロート要素分の高さを付与する
   var setAddHeightToTarget = function(v) {
     // フロート要素がフロートしている場合
-    if (v.target.classList.contains('is-float_showed' && 'is-float_floated')) {
+    if (v.target.classList.contains('is-float_activated' && 'is-float_floated')) {
       // 高さを付け足す方向が top の場合
       if (v.addHeightDirection === 'top') {
         v.addHeightTargetId.style.paddingTop = v.totalPadding + 'px';
@@ -183,7 +183,7 @@ var floatContent = function(opt){
   // ロード・リサイズ・スクロール時
   var loadResizeScrollCallSummary = function(v) {
     // フロートさせるか判定する
-    if (v.target.classList.contains('is-float_showed')) toggleIsFloatFloatedClass(v);
+    if (v.target.classList.contains('is-float_activated')) toggleIsFloatFloatedClass(v);
     
     // 高さを追加するタイプではない場合
     if (!v.addHeightDirection) return;
@@ -210,7 +210,7 @@ var floatContent = function(opt){
       toggleDisableTransition(v.stackTargetId, 'add');
       
       // 先行フロート要素が表示ブラウザ幅でない場合は何もしない
-      if (!v.stackTargetId.classList.contains('is-float_showed')) {}
+      if (!v.stackTargetId.classList.contains('is-float_activated')) {}
       
       // 先行フロート要素が表示ブラウザ幅でフロートしている場合
       else if (v.stackTargetId.classList.contains('is-float_floated'))
@@ -272,43 +272,43 @@ var floatContent = function(opt){
   
   
   // 表示ブラウザ幅の判定(ロード・リサイズ用)
-  var toggleIsFloatShowedClass = function(v) {
+  var toggleIsFloatActivatedClass = function(v) {
     var WINDOW_WIDTH = window.innerWidth;
     
     // ブラウザ幅問わず表示の場合
-    if (!v.displayWidth) {
-      v.target.classList.add('is-float_showed');
+    if (!v.activatedWidth) {
+      v.target.classList.add('is-float_activated');
       // 表示の場合は true を返す
       return true;
     }
     
     // max-width の場合
-    if (v.displayWidth[0] === 'max-width') {
+    if (v.activatedWidth[0] === 'max-width') {
      // 指定幅以下で表示
-      if (v.displayWidth[1] >= WINDOW_WIDTH) {
-        v.target.classList.add('is-float_showed');
+      if (v.activatedWidth[1] >= WINDOW_WIDTH) {
+        v.target.classList.add('is-float_activated');
         return true;
       }
      // 指定幅以上で非表示
-      v.target.classList.remove('is-float_showed');
+      v.target.classList.remove('is-float_activated');
       return;
     }
     
     // min-width の場合
     // 指定幅以上で表示
-    if (v.displayWidth[1] <= WINDOW_WIDTH) {
-      v.target.classList.add('is-float_showed');
+    if (v.activatedWidth[1] <= WINDOW_WIDTH) {
+      v.target.classList.add('is-float_activated');
       return true;
     }
     // 指定幅以下で非表示
-    v.target.classList.remove('is-float_showed');
+    v.target.classList.remove('is-float_activated');
   };
   
   
   
   // ロード・リサイズ時は付与クラスをリセット
   var resetClass = function (v) {
-      v.target.classList.remove('is-float_showed');
+      v.target.classList.remove('is-float_activated');
       v.target.classList.remove('is-float_floated');
   };
   
@@ -316,13 +316,13 @@ var floatContent = function(opt){
   
   // ロードとリサイズ時
   var loadResizeCallSummary = function(v) {
-    var IsFloatShowed;
+    var IsFloatActivated;
     
     resetClass(v);
     // 表示ブラウザ幅の場合は true を受け取る
-    IsFloatShowed = toggleIsFloatShowedClass(v);
+    IsFloatActivated = toggleIsFloatActivatedClass(v);
     // 表示ブラウザ幅でなければ return
-    if (!IsFloatShowed) return;
+    if (!IsFloatActivated) return;
     
     // 表示ブラウザ幅の場合 ----------------------------------------
     // 対象要素に高さを追加するフロート要素の場合
@@ -654,12 +654,12 @@ var smoothScroll = function(opt){
     
     if (opt.floatStatus) {
       opt.floatStatus.floatedClass = opt.floatStatus.floatedClass ? opt.floatStatus.floatedClass : 'is-float_floated';
-      opt.floatStatus.showedClass = opt.floatStatus.showedClass ? opt.floatStatus.showedClass : 'is-float_showed';
+      opt.floatStatus.activatedClass = opt.floatStatus.activatedClass ? opt.floatStatus.activatedClass : 'is-float_activated';
     }
     else {
       opt.floatStatus = {
         floatedClass: 'is-float_floated',
-        showedClass: 'is-float_showed'
+        activatedClass: 'is-float_activated'
       };
     }
     
@@ -791,7 +791,7 @@ var smoothScroll = function(opt){
       // エラープロパティがある場合は返す
       if (v.error) return;
       // フロート要素が表示ブラウザ幅でない場合
-      if (!v.target.classList.contains(opt.floatStatus.showedClass)) return;
+      if (!v.target.classList.contains(opt.floatStatus.activatedClass)) return;
       
       // メソッドを実行しつつ真偽値を配列に格納する
       result = checkIsFloatedTopAtTheLink(v.alwaysFloated, i, offsetObj);
@@ -1086,7 +1086,7 @@ var smoothScroll = function(opt){
       // エラープロパティがある場合 または フロート要素が表示ブラウザ幅でない場合 は返す
       if (
         v.error ||
-        !v.target.classList.contains(opt.floatStatus.showedClass)
+        !v.target.classList.contains(opt.floatStatus.activatedClass)
       ) {
         // エラーがある場合は取得する必要がある値に [null] を代入しておく
         floatTopElemDetailObj.unFloatedCoordinates.push(null);

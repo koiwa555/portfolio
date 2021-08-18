@@ -52,7 +52,7 @@ a {
   transition: padding .2s ease;
   width: 100%;
 }
-#floatHeader.is-float_showed.is-float_floated {
+#floatHeader.is-float_activated.is-float_floated {
   height: 40px;
   left: 0;
   padding: 12px 0 13px;
@@ -79,7 +79,7 @@ a {
   overflow: hidden;
   width: 100%;
 }
-#floatPageLink.is-float_showed.is-float_floated {
+#floatPageLink.is-float_activated.is-float_floated {
   left: 0;
   position: fixed;
   top: 40px;
@@ -117,7 +117,7 @@ a {
   width: 100%;
   z-index: 10;
 }
-#floatFooter.is-float_showed.is-float_floated {
+#floatFooter.is-float_activated.is-float_floated {
   margin: 0 auto;
 }
 #floatFooter p {
@@ -172,10 +172,10 @@ a {
 #floatToFooter span {
   margin: -.6em 0 0 -2.1em;
 }
-#floatToTop.is-float_showed.is-float_floated {
+#floatToTop.is-float_activated.is-float_floated {
   margin: 0 5% 140px 0;
 }
-#floatToFooter.is-float_showed.is-float_floated {
+#floatToFooter.is-float_activated.is-float_floated {
   margin: 140px 5% 0 0;
 }
 #footer {
