@@ -1,0 +1,43 @@
+/* --------------------------------------------------
+header
+-------------------------------------------------- */
+header {
+  color: #fff;
+  width: 100%;
+  z-index: 10;
+  /* 上スクロールでの表示に若干のアニメーション */
+  /* iPhone で広告消したら表示・非表示がガクガクになったのでコメントアウト */
+  /* transition: margin 0.01s linear; */
+}
+header.is-float_floated {
+  margin: -40px 0 0;
+  position: fixed;
+  top: 0;
+}
+/*
+アンカークリック時には要素の表示と
+transition でアニメーションを適用する
+*/
+header.is-scrolled {
+  transition: margin .3s ease-out;
+}
+.header-txt {
+  margin: 0;
+}
+.header-txt a {
+  display: block;
+  font-size: 16px;
+  height: 40px;
+  padding: .5em 0 0;
+  text-align: center;
+}
+.header-txt .u-en span {
+  font-size: 11px;
+  padding: 0 0 .2em .1em;
+}
+header a {
+  transition: opacity .3s ease-out;
+}
+header a:hover {
+  opacity: .5;
+}
