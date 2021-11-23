@@ -26,8 +26,11 @@ button {
   margin: 0;
   padding: 0;
 }
-.is-inline_block_wrap {
+.u-inline_block_wrap {
   letter-spacing: -.4em;
+}
+.u-split {
+  display: inline-block;
 }
 html {
   font-size: 100%;
@@ -35,7 +38,7 @@ html {
 body {
   background: #f0f0f4;
   overflow-y: scroll;
-  padding: 20px 0 220px;
+  padding: 30px 0 220px;
 }
 header {
   background: #000;
@@ -84,7 +87,7 @@ button {
 
 
 /* --------------------------------------------------------------------------------
-
+ outer
 -------------------------------------------------------------------------------- */
 .inner_wrap {
   font-size: 16px;
@@ -94,6 +97,51 @@ button {
   margin: 0 auto;
   width: 96%;
 }
+.to_how_to {
+  border: 2px solid #0e0e0e;
+  background: #fff200;
+  padding: 0.6em 38px 0.5em 1.3em;
+  font-size: 14px;
+  text-decoration: underline;
+  margin: 10px 1.5em 14px;
+  display: inline-block;
+  text-shadow: 0 0 0 #0e0e0e;
+  transition: 0.2s ease;
+  position: relative;
+  line-height: 1.5;
+}
+.to_how_to::after {
+  display: inline-block;
+  content: '';
+  width: 10px;
+  height: 10px;
+  margin: -8px 14px 0 0;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  border-right: 2px solid #0e0e0e;
+  border-bottom: 2px solid #0e0e0e;
+  transform: rotate(45deg);
+}
+.to_how_to:hover {
+  opacity: 0.6;
+}
+.to_how_to .u-split {
+  text-decoration: underline;
+}
+@media screen and (max-width: 767px) {
+  .to_how_to {
+    font-size: 13px;
+    width: calc(100% - 3em);
+    text-align: center;
+  }
+  
+}
+
+
+/* --------------------------------------------------------------------------------
+ bbs
+-------------------------------------------------------------------------------- */
 .post_list> li> .post_inner_wrap.is-hovered,
 .hover_posts_list.is-hovered> li {
   background-color: rgba(0, 0, 0, .12);
@@ -452,112 +500,119 @@ input:selected {
 aside
 -------------------------------------------------------------------------------- */
 #sideNavBtn {
-  height: 110%;
-  left: 0;
-  position: fixed;
-  top: 0;
-  visibility: hidden;
-  width: 100%;
-  z-index: 10;
-}
-#sideNavBtn.is-showed {
-  visibility: visible;
-}
-#sideNavListWrap {
-  bottom: 104px;
-  height: 100%;
-  margin: 0 -100px 0 0;
-  overflow-y: scroll;
-  position: fixed;
-  right: 0;
-  transition: .2s ease-out;
-  z-index: 2;
-}
-#sideNavBtn.is-showed #sideNavListWrap {
-  margin: 0 0 0 0;
-}
-#sideNavList {
-  background: #fefefe;
-  border-left: 1px solid #aaa;
-  /*
-  スマホ用に右下までナビをスクロールするための余白
-  */
-  padding: calc(100vh - 120px) 0 0;
-  position: relative;
-  z-index: 2;
-}
-.side_nav_list_item {
-  border-top: 1px solid #888;
-  display: block;
-  text-align: center;
-}
-.side_nav_list_item.is-hide {
   display: none;
 }
-.side_nav_list_item a {
-  color: #0e0e0e;
-  display: block;
-  font-size: 10px;
-  height: 60px;
-  line-height: 61px;
-  text-shadow: 0 0 0 #000;
-  width: 40px;
+@media screen and (max-width: 767px) {
+  #sideNavBtn {
+    display: block;
+    height: 110%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    visibility: hidden;
+    width: 100%;
+    z-index: 10;
+  }
+  #sideNavBtn.is-showed {
+    visibility: visible;
+  }
+  #sideNavListWrap {
+    bottom: 104px;
+    height: 100%;
+    margin: 0 -100px 0 0;
+    overflow-y: scroll;
+    position: fixed;
+    right: 0;
+    transition: .2s ease-out;
+    z-index: 2;
+  }
+  #sideNavBtn.is-showed #sideNavListWrap {
+    margin: 0 0 0 0;
+  }
+  #sideNavList {
+    background: #fefefe;
+    border-left: 1px solid #aaa;
+    /*
+    スマホ用に右下までナビをスクロールするための余白
+    */
+    padding: calc(100vh - 120px) 0 0;
+    position: relative;
+    z-index: 2;
+  }
+  .side_nav_list_item {
+    border-top: 1px solid #888;
+    display: block;
+    text-align: center;
+  }
+  .side_nav_list_item.is-hide {
+    display: none;
+  }
+  .side_nav_list_item a {
+    color: #0e0e0e;
+    display: block;
+    font-size: 10px;
+    height: 60px;
+    line-height: 61px;
+    text-shadow: 0 0 0 #000;
+    width: 40px;
+  }
+  #sideNavToggleBtn {
+    background: #2461ec;
+    bottom: 44px;
+    color: #fff;
+    display: none;
+    font-size: 10px;
+    height: 60px;
+    margin: 0 -40px 0 0;
+    padding: 28px 40px 0 0;
+    position: fixed;
+    right: 0;
+    text-shadow: 0 0 0 #fff;
+    transition: .2s ease-out;
+    visibility: visible;
+    width: 80px;
+    z-index: 2;
+  }
+  #sideNavToggleBtn.is-active {
+    display: block;
+  }
+  #sideNavBtn.is-showed #sideNavToggleBtn {
+    margin: 0;
+  }
+  #sideNavToggleBtn::before {
+    border-right: 2px solid #fff;
+    border-top: 2px solid #fff;
+    content: '';
+    display: block;
+    height: 9px;
+    left: 0;
+    margin: 0 0 0 17px;
+    position: absolute;
+    top: 15px;
+    transform: rotate(-135deg);
+    width: 9px;
+  }
+  #sideNavBtn.is-showed #sideNavToggleBtn::before {
+    margin: 0 0 0 11px;
+    transform: rotate(45deg);
+  }
+  #sideNavOverlay {
+    background: rgba(0, 0, 0, .15);
+    height: 110%;
+    left: 0;
+    margin: 0 0 0 100%;
+    position: fixed;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+  }
+  #sideNavBtn.is-showed #sideNavOverlay {
+    margin: 0;
+    transition: .2s ease-out;
+  }
 }
-#sideNavToggleBtn {
-  background: #2461ec;
-  bottom: 44px;
-  color: #fff;
-  display: none;
-  font-size: 10px;
-  height: 60px;
-  margin: 0 -40px 0 0;
-  padding: 28px 40px 0 0;
-  position: fixed;
-  right: 0;
-  text-shadow: 0 0 0 #fff;
-  transition: .2s ease-out;
-  visibility: visible;
-  width: 80px;
-  z-index: 2;
-}
-#sideNavToggleBtn.is-active {
-  display: block;
-}
-#sideNavBtn.is-showed #sideNavToggleBtn {
-  margin: 0;
-}
-#sideNavToggleBtn::before {
-  border-right: 2px solid #fff;
-  border-top: 2px solid #fff;
-  content: '';
-  display: block;
-  height: 9px;
-  left: 0;
-  margin: 0 0 0 17px;
-  position: absolute;
-  top: 15px;
-  transform: rotate(-135deg);
-  width: 9px;
-}
-#sideNavBtn.is-showed #sideNavToggleBtn::before {
-  margin: 0 0 0 11px;
-  transform: rotate(45deg);
-}
-#sideNavOverlay {
-  background: rgba(0, 0, 0, .15);
-  height: 110%;
-  left: 0;
-  margin: 0 0 0 100%;
-  position: fixed;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 1;
-}
-#sideNavBtn.is-showed #sideNavOverlay {
-  margin: 0;
-  transition: .2s ease-out;
-}
+
 
 
 /* ------------------------------------------------------------

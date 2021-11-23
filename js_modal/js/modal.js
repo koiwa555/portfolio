@@ -992,7 +992,7 @@ var modal = function(opt) {
       getSlidePrevBtn(slide);
       getSlideNextBtn(slide);
       
-      slideBtnHandle .slide = slide;
+      slideBtnHandle.slide = slide;
       toggleSlideBtnClickEvent(slideBtnHandle , 'add');
       
     // 閉じるボタンのイベント内で該当イベントを解除するため closeBtnHandle に

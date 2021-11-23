@@ -41,7 +41,6 @@ a {
 #floatHeader,
 #floatPageLink {
   opacity: .7;
-  z-index: 10;
 }
 #floatHeader {
   background: #247ade;
@@ -51,8 +50,9 @@ a {
   padding: 22px 0;
   transition: padding .2s ease;
   width: 100%;
+  z-index: 10;
 }
-#floatHeader.is-float_activated.is-float_floated {
+#floatHeader.is-float_enabled.is-float_floated {
   height: 40px;
   left: 0;
   padding: 12px 0 13px;
@@ -78,12 +78,33 @@ a {
   /* ずれ対策に必須！ */
   overflow: hidden;
   width: 100%;
+  transition: 0.2s ease;
+  z-index: 9;
 }
-#floatPageLink.is-float_activated.is-float_floated {
+/* #floatPageLink.is-float_enabled.is-float_floated {
   left: 0;
   position: fixed;
   top: 40px;
+} */
+/* scrollUp 対応版 */
+#floatPageLink.is-float_enabled.is-float_floated {
+  left: 0;
+  position: fixed;
+  top: 40px;
+  /* margin: -30px 0 0; */
 }
+
+
+
+
+
+
+
+
+
+
+
+
 #floatPageLink a {
   border: 1px solid #ccc;
   font-size: 14px;
@@ -117,9 +138,6 @@ a {
   width: 100%;
   z-index: 10;
 }
-#floatFooter.is-float_activated.is-float_floated {
-  margin: 0 auto;
-}
 #floatFooter p {
   background: #666;
   font-size: 13px;
@@ -131,7 +149,7 @@ a {
 #floatFooter a {
   color: #fff;
   font-size: 14px;
-  padding: .9em 1em 1em;
+  padding: 14px 1em 12px;
 }
 #floatToTop,
 #floatToFooter {
@@ -172,10 +190,10 @@ a {
 #floatToFooter span {
   margin: -.6em 0 0 -2.1em;
 }
-#floatToTop.is-float_activated.is-float_floated {
+#floatToTop.is-float_enabled.is-float_floated {
   margin: 0 5% 140px 0;
 }
-#floatToFooter.is-float_activated.is-float_floated {
+#floatToFooter.is-float_enabled.is-float_floated {
   margin: 140px 5% 0 0;
 }
 #footer {
@@ -196,23 +214,53 @@ a {
   width: 15em;
   z-index: 1000;
 }
-@media screen and (max-width: 583px) {
-  #mainVisual {
-    padding: 0 0 50%;
+@media screen and (max-width: 767px) {
+  #floatFooter.is-float_enabled.is-float_floated {
+    /* margin: 0 auto; */
   }
-  #floatFooter {
+  #floatFooter.is-float_enabled.is-float_floated {
     bottom: 0;
     color: #fff;
     left: 0;
-    margin: 0 auto -100px;
+    margin: 0 auto -40px;
     position: fixed;
     -webkit-transition: .2s ease;
     transition: .2s ease;
     width: 100%;
     z-index: 10;
   }
-  #floatFooter p {
+  /*
+  scrollUp 対象要素にスムーススクロール中にクラスを付与して
+  上スクロールの処理を打ち消す
+  */
+  /* #floatFooter.is-float_enabled.is-anchor_clicked {
+    margin: 0 auto -40px !important;
+  } */
+  
+  /* cancel 検証よう css */
+  #floatFooter.is-float_enabled.is-float_floated {
+    margin: 0;
+  }
+  #floatFooter.is-float_enabled.is-float_floated.is-float_canceled {
+    position: relative;
+    z-index: 0;
+  }
+  /* ここまで */
+  
+  #floatFooter.is-float_enabled.is-float_scroll_up {
+    margin: 0;
+  }
+  
+  
+  
+  
+  #floatFooter.is-float_enabled p {
     display: none;
+  }
+}
+@media screen and (max-width: 583px) {
+  #mainVisual {
+    padding: 0 0 50%;
   }
 }
 

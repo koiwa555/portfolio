@@ -34,6 +34,9 @@
     <main>
       <div class="inner_wrap">
         <div class="inner">
+          
+          <a class="to_how_to" href="#post501">使い方は 501～504 番にありますので、<span class="u-split">一度移動してください。</span></a>
+          
           <ol id="postList" class="post_list">
             <!-- 投稿がある場合 -->
             <?php if(count($postNum)) : ?>
@@ -106,19 +109,19 @@
       </button>
       
       <form action="" method="post">
-        <div class="settings is-inline_block_wrap">
-          <div class="user is-inline_block_wrap">
+        <div class="settings u-inline_block_wrap">
+          <div class="user u-inline_block_wrap">
             <label for="user">名前:</label>
             <input id="user" type="text" name="user">
           </div>
           
-          <div class="email is-inline_block_wrap">
+          <div class="email u-inline_block_wrap">
             <label for="email">E-mail:</label>
             <input id="email" type="text" name="email">
           </div>
           
-          <div class="btn_wrap is-inline_block_wrap">
-            <div class="sage is-inline_block_wrap">
+          <div class="btn_wrap u-inline_block_wrap">
+            <div class="sage u-inline_block_wrap">
               <input id="sage" type="checkbox" name="sage" value="sage">
               <label id="sage_label" for="sage">sage</label>
             </div>

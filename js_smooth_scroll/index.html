@@ -59,7 +59,7 @@
   </a>
   
   <div id="floatFooter">
-    <p>ブラウザ幅583px以下でフロート</p>
+    <p>ブラウザ幅767px以下でフロート 上スクロールで表示</p>
     <ul class="is-inline_block_wrap">
       <li class="is-inline_block"><a href="#mainVisual">メインビジュアル へ</a></li>
       <li class="is-inline_block"><a href="#b5">5 へ</a></li>
@@ -84,31 +84,108 @@
         //
         switchPosition: 'floatPageLink',
         
-        // 表示させたいブラウザ幅
-        // 0番目の要素：['max-width']・['min-width']
-        // 1番目の要素：[数値]
-        // [記述無し (常時表示)]
-        //
-        activatedWidth: ['max-width', 583],
-        
-        // フロート要素がフロートする前の高さを、フロート時に指定した要素に付け足す。
-        // 『addHeightDirection』とセットで指定する
-        // [対象の ID 名]・[記述無し]
-        //
-        addHeightTargetId: 'mainVisual',
-        
-        // 高さを付け足す方向
-        // 『addHeightTargetId』とセットで指定する
-        // [top]・[bottom]・[記述無し]
-        //
-        addHeightDirection: 'top',
-        
         // head 側で先行してフロートしている要素の ID 名を指定すると、その下にツライチでフロートする
         // [対象の ID 名]・[記述無し]
         //
-        stackTargetId: 'floatHeader',
+        stackId: 'invisibleHeader',
+        
+        // フロート要素が対象幅のときにフロートするか否か
+        // range の記述がある項目は配列で複数記述しても、単体でもおｋ
+        float: [
+          {
+          // フロートさせるか否か
+          // [true (初期値)]・[false]
+          enabled: true,
+          
+          // 適用するブラウザの幅
+          // 0番目の要素：['max-width']・['min-width']
+          // 1番目の要素：[数値]
+          // [記述無し (常時表示)]
+          //
+          range: ['min-width', 900],
+          }, ...
+        ],
+        
+        // フロート要素がフロートする前の高さを、フロート時に指定した要素に付け足す。
+        addHeight: {
+          // [対象の ID 名]
+          id: 'body',
+          // 高さを付け足す方向
+          // [top]・[bottom]
+          direction: 'top',
+        },
+        
+        // 条件に合致したときにフロートを解除するか否か
+        cancel: [
+          {
+            enabled: true,
+            // range: ['max-width', 767],
+            
+            // 解除対象のフロート要素が、メインコンテンツ・
+            // サイドコンテンツどちらにあるか。
+            // メインの場合は自身の元々の位置で解除され、
+            // サイドの場合はメインコンテンツの下端で解除される。
+            // [main]・[side]
+            feature: 'side',
+            
+            // フロート解除中に他の要素に [is-float_canceled] クラスを付与する
+            addClassId: ['toTopCircleOuter'],
+            
+            // サイドコンテンツ用のオプション
+            sideOptions: {
+              // [メインコンテンツの ID 名]
+              mainId: 'main',
+              
+              // イベント発火座標の調整用パラメータ
+              // [数値]
+              coordinate: 40,
+              
+              // side の要素に指定する position absolute の top の座標調整用パラメータ
+              // [数値]
+              // absolute: 0,
+            },
+          },
+        ],
+        
+        // フロート要素が上スクロールのときにだけ表示されるようにする
+        scrollUp: [
+          {
+            range: ['max-width', 899],
+            enabled: true,
+            
+            // 要素の表示方法
+            // マージンで調整するか、クラスを付与するか。
+            // [changeMargin]・[addClass]
+            feature: 'changeMargin',
+            
+            // feature で [changeMargin] を選択時に必要
+            // マージンを調整する方向
+            // [top]・[bottom]
+            marginDirection: 'top',
+          },
+        ],
+        
       }
     ];
+    
+    cancel の side に必要なもの
+    ①main の座標 (top)
+    ②main の高さ
+    ③side の高さ
+    ④ブラウザの高さ
+    ⑤ブラウザの下端から何 px でフロートを解除するか
+    ① + ② = ⑥main の下端の座標 (bottom)
+    ⑥ - ③ = ⑦side に対してabsolute で付与する座標 (top: 〇〇px)
+    
+    途中でフロートする要素と上下スクロールのいずれかで表示するやつは相性悪いので併用しない
+    
+    scrollUp はスムーススクロール中に [is-scrolled] を付与して、
+    常時表示させておく仕様とした。
+    その際に、このクラスを要素に付与した状態で、transition をあてる必要がある。
+    transition が指定されていない場合は、急に飛び出す用に表示されてしまう。
+    
+    ・上スクロール判定で表示・非表示するのであれば、対象要素の高さは整数値が望ましい。
+    
     */
     
     var setFloatOptions = function() {
@@ -116,22 +193,61 @@
         {
           id: 'floatHeader',
           switchPosition: 'floatHeader',
-          addHeightTargetId: 'header',
-          addHeightDirection: 'bottom',
+          addHeight: {
+            id: 'header',
+            direction: 'bottom',
+          },
         },
         {
           id: 'floatPageLink',
           switchPosition: 'floatPageLink',
-          addHeightTargetId: 'floatPageLinkWrap',
-          addHeightDirection: 'top',
-          stackTargetId: 'floatHeader',
+          addHeight: {
+            id: 'floatPageLinkWrap',
+            direction: 'top',
+          },
+          stackId: 'floatHeader',
         },
         {
           id: 'floatFooter',
-          switchPosition: 100,
-          activatedWidth: ['max-width', 583],
-          addHeightTargetId: 'footer',
-          addHeightDirection: 'bottom',
+          // switchPosition: 100,
+          float: {
+            enabled: true,
+            // range: ['max-width', 767],
+          },
+          addHeight: {
+            id: 'footer',
+            direction: 'bottom',
+          },
+          scrollUp: [
+            {
+              range: ['max-width', 767],
+              enabled: true,
+              feature: 'changeMargin',
+              marginDirection: 'bottom',
+            },
+          ],
+          cancel: [
+            {
+              range: ['max-width', 767],
+              enabled: true,
+              feature: 'main',
+            },
+            
+            /*
+            {
+              range: ['max-width', 767],
+              enabled: true,
+              feature: 'side',
+              displayBottomHeight: 60,
+              side: {
+                mainId: 'main',
+                adjustCoordinate: true,
+                
+              }
+            },
+            */
+            
+          ],
         },
         {
           id: 'floatToTop',
@@ -147,15 +263,15 @@
     setFloatOptions();
     
     
-    
     /*
-    var smoothScrollOptions = {
-      // easing関数を選択する
+    var options = {
+      // アニメーションの選択
       // [linear]・[easeOutExpo]・[easeInQuad]・[easeOutQuad]・[easeInOutQuad]
       // ・[easeInSine]・[easeOutSine]・[easeInOutSine]・[easeInCubic]
       // ・[easeOutCubic]・[easeInOutCubic]・[記述無し (linear)]
       //
       easing: 'linear',
+      
       // 移動速度のプロパティ
       duration: {
         // リンク先への移動速度
@@ -163,11 +279,12 @@
         //
         anchor: 600,
         
-        // URLのハッシュリンクでの移動速度
+        // URLハッシュリンクでの移動速度
         // [数値]・[記述無し (anchorで指定した数値 or 1000)]
         //
         urlHash: 0,
       },
+      
       // 動的要素対応のプロパティ
       dynamic: {
         // 動的要素をサポートするか否か
@@ -179,6 +296,7 @@
         // [記述無し] で初期値の [document] となる
         parentId: 'body',
       },
+      
       // head側にフロートする要素のプロパティ
       floatTopElem: [
         {
@@ -191,29 +309,37 @@
           alwaysFloated: false,
         }
       ],
+      
+      // スムーススクロール中に指定要素に [is-scrolled] クラスを付与する
+      addClass: {
+        id: ['header', 'sampleNav'],
+      },
+      
       // フロート要素に付与するクラス名のプロパティ
       floatStatus: {
         // フロート要素がフロートしているときに付与されるクラス
         // [class名]・[記述無し (is-float_floated)]
         //
         floatedClass: 'is-float_floated',
-        // フロート要素として活性化させたいブラウザ幅のときに付与されるクラス
-        // [class名]・[記述無し (is-float_activated)]
+        // フロート要素として有効化させたいブラウザ幅のときに付与されるクラス
+        // [class名]・[記述無し (is-float_enabled)]
         //
-        activatedClass: 'is-float_activated',
+        enabledClass: 'is-float_enabled',
       },
+      
       // イベントの発火タイミングをバブリングフェーズからキャプチャフェーズに変更する
       // addEventListener() の第3引数『capture』を[true]にする
       //
       // BBSで他のメソッドとの兼ね合いで実装したような覚えがある…
       // デバイス幅で要素のアンカークリックしてもスクロールしたり
       // しなかったり…って処理のためだったかな…？？？
+      // [true]・[false]・[記述無し (false)]
       eventUseCapture: false
     };
     */
     
     var setSmoothScrollOptions = function() {
-      var smoothScrollOptions = {
+      var options = {
         easing: 'linear',
         duration: {
           anchor: 600,
@@ -229,9 +355,12 @@
             alwaysFloated: false,
           }
         ],
+        addClass: {
+          id: ['floatFooter', 'floatPageLink'],
+        },
         eventUseCapture: false
       };
-      smoothScroll(smoothScrollOptions);
+      smoothScroll(options);
     };
     setSmoothScrollOptions();
     
