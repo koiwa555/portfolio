@@ -538,19 +538,25 @@ prof
   padding: 1.8em 2em 1.5em;
 }
 .career-past-list-item {
-  padding: 0 0 .2em 1.5em;
+  line-height: 1.6;
+  padding: 0 0 1em 1.5em;
   text-indent: -1.5em;
 }
 .career-past-list-item:last-of-type {
-  margin: 0 0 -.2em;
+  padding: 0 0 0 1.5em;
 }
-.career-past-list_in_list li {
+.career-past-list-item_inner {
+  text-indent: 0;
+  font-size: 14px;
+  padding: 0.3em 0 0;
+}
+/* .career-past-list_in_list li {
   padding: 0 0 .1em 1.1em;
   text-indent: -1.1em;
 }
 .career-past-list_in_list li:last-of-type {
   margin: 0 0 -.1em;
-}
+} */
 .pdf_link {
   animation: pdfCircle 4s linear infinite;
   background: #f5d000;
@@ -632,13 +638,13 @@ prof
   pointer-events: none;
 }
 .pdf_link-txt-main {
-  font-size: 16px;
+  font-size: 17px;
   letter-spacing: 0;
   padding: 40px 0 0;
 }
 .pdf_link-txt-sub {
   display: block;
-  font-size: 12px;
+  font-size: 13px;
   letter-spacing: -.02em;
   margin: 2px 0 0 2px;
 }
@@ -692,12 +698,12 @@ prof
   .career-past-list {
     line-height: 1.7;
   }
-  .career-past-list-item {
-    padding: 0 0 .3em 1.5em;
+  .career-past-list-item_inner {
+    font-size: 13px;
   }
-  .career-past-list_in_list li {
+  /* .career-past-list_in_list li {
     padding: 0;
-  }
+  } */
   .pdf_link {
     animation: pdfCircle 3s linear infinite;
     height: 90px;
@@ -945,6 +951,7 @@ skill
 .skill-detail-head .u-jp {
   display: inline-block;
   font-size: 18px;
+  letter-spacing: 0.1em;
   padding: 0 0 1px;
 }
 .skill-detail-head span {

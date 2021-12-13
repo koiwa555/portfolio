@@ -382,9 +382,17 @@ caption,
   font-size: 16px;
   font-weight: bold;
   line-height: 1.4;
-  margin: 0 0 14px;
+  margin: -0.4em 0 14px;
   padding: .4em 0 .4em 2.4em;
   position: relative;
+}
+dd caption,
+dd .wp-block-group p:first-of-type,
+dd .wp-block-image figcaption {
+  font-size: 15px;
+  padding: 0.4em 0 0.4em 1.8em;
+  font-weight: normal;
+  text-shadow: 0 0 0 #0e0e0e;
 }
 caption::before,
 .wp-block-group p:first-of-type::before,
@@ -397,6 +405,16 @@ caption::before,
   position: absolute;
   top: 50%;
   width: 1.6em;
+}
+.wp-block-group p:first-of-type+ dl {
+  margin-top: 0;
+}
+dd caption::before,
+dd .wp-block-group p:first-of-type::before,
+dd .wp-block-image figcaption::before {
+  height: 1.15em;
+  margin: -9px 0 0;
+  width: 1.15em;
 }
 .wp-block-group p:first-of-type {
   max-width: none;
@@ -469,13 +487,14 @@ ol li:nth-of-type(1)::before {
 table {
   border: 1px solid #9ca9af;
   margin: 50px 0 50px;
+  width: 100%;
 }
 caption {
   text-align: left;
 }
 th,
 td {
-  border-bottom: 1px solid #9ca9af;
+  border: 1px solid #9ca9af;
   font-size: 14px;
   line-height: 1.6;
   padding: .6em 1em .5em;
@@ -488,7 +507,7 @@ th {
   font-weight: normal;
   text-align: left;
   text-shadow: 0 0 0 #0e0e0e;
-  word-break: normal;
+  word-break: keep-all;
 }
 th[colspan],
 td[colspan] {
@@ -509,8 +528,8 @@ dd {
 dt {
   font-size: 16px;
   line-height: 1.4;
-  margin: 0 0 .6em;
-  padding: 0 0 0 2.2em;
+  margin: 0 0 .7em;
+  padding: 0 0 0 38px;
   position: relative;
   text-shadow: 0 0 0 #0e0e0e, 0 0 0 #0e0e0e;
 }
@@ -519,11 +538,11 @@ dt::before {
 
 /*ver 4.7 */
   font-family: 'FontAwesome';
-  font-size: 28px;
+  font-size: 2em;
   font-weight: bold;
   left: 0;
   line-height: 1.0;
-  margin: -.54em 0 0;
+  margin: -.55em 0 0;
   padding: 0 .3em 0 0;
   position: relative;
   position: absolute;
@@ -532,11 +551,14 @@ dt::before {
   top: 50%;
 }
 dd {
-  padding: 0 0 .8em 2.3em;
+  padding: 0 0 1em 40px;
   position: relative;
 }
 dd:not(:last-of-type) {
-  margin: 0 0 1.4em;
+  margin: 0 0 1.6em;
+}
+dd> :not(img):not(.wp-block-image):last-child {
+  margin-bottom: 0;
 }
 dd:after {
   border-bottom: 1px solid #9ca9b0;
@@ -547,8 +569,9 @@ dd:after {
   position: absolute;
   width: 110%;
 }
-dd ul {
-  margin: 0;
+dd p {
+  margin: 0 0 20px;
+  padding: 0;
 }
 .wp-block-image {
   display: flex;
@@ -567,12 +590,16 @@ dd ul {
 img {
   border: 1px solid #b7bbbb;
 }
+/* editor-style 専用 */
+dd table {
+  margin: 24px 0 !important;
+}
 dd .wp-block-image,
 p img,
 li img,
 dt img,
 dd img {
-  margin: 20px 0;
+  margin: 24px 0;
 }
 dd .wp-block-image img {
   margin: 0;
@@ -598,9 +625,6 @@ li :last-child {
   h2 {
     font-size: 20px;
     margin: 50px 0 25px;
-  }
-  dd {
-    padding: 0 0 .8em 2.4em;
   }
   p img,
   li img,
@@ -638,6 +662,13 @@ li :last-child {
   }
   dt {
     font-size: 15px;
+    padding: 0 0 0 36px;
+  }
+  dd {
+    padding: 0 0 1em 38px;
+  }
+  dd .wp-block-image figcaption {
+    font-size: 14px;
   }
 }
 @media screen and (max-width: 479px) {
@@ -651,13 +682,10 @@ li :last-child {
     font-size: 18px;
   }
   dt {
-    margin: 0 0 .8em;
+    margin: 0 0 1em;
   }
   dd {
-    padding: 0 0 .5em;
-  }
-  dd:not(:last-of-type) {
-    margin: 0 0 2em;
+    padding: 0 0 .8em .4em;
   }
   p img,
   li img,

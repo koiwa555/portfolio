@@ -110,17 +110,13 @@
             <ol class="career-past-list">
               <li class="career-past-list-item">① 学生時代はイラスト制作について学ぶ</li>
               <li class="career-past-list-item">② ECサイト運営で商品撮影や商品登録などを経験
-                <ul class="career-past-list_in_list">
-                  <li>・お客様に商品の魅力を届けることの楽しさを知る</li>
-                  <li>・多彩な手法で情報を発信したいと考えるようになる</li>
-                </ul>
+                <p class="career-past-list-item_inner">お客様に商品の魅力を届ける楽しさを知り、より多彩な手法で情報を発信したいと考えるようになりました。</p>
               </li class="career-past-list-item">
-              <li class="career-past-list-item">③ 半年間Webデザインの求職者支援訓練を受講</li>
-              <li class="career-past-list-item">④ Webデザイナーとして3年半ほど従事する
-                <ul class="career-past-list_in_list">
-                  <li>・プログラミングに楽しさを見い出し始める</li>
-                  <li>・独学でプログラミングについて勉強を続ける</li>
-                </ul>
+              <li class="career-past-list-item">③ 半年間Webデザインの求職者支援訓練を受講
+                <p class="career-past-list-item_inner">HTML・CSS・JavaScript・PHP・Wordpressなどの基礎的な部分を学び、就職に繋げることができました。</p>
+              </li>
+              <li class="career-past-list-item">④ Webデザイナーとして約4年ほど従事
+                <p class="career-past-list-item_inner">デザインよりもプログラミングに楽しさを見い出すようになり、独学でJavaScriptやPHPについて勉強を続けておりました。</p>
               </li>
             </ol>
           </section><!-- h3 -->
@@ -128,12 +124,11 @@
             <h3 class="career-future-head c-middle_head u-jp">
               <span class="career-future-head-inner u-hiragana">これから<span class="u-en u-block">From now on</span></span>
             </h3>
-            <p class="career-future-txt">現在は『OAシステム開発科』という1年間の職業訓練を受講中で、C言語・Java・SQLなどを学び、仕様書通りにプログラムを構築していくための方法について勉強しております。<br>
-            また、独学ではありますが、PHPやWordPressの勉強も併用して行っています。<br>
-            これまでの経験と、現在学んでいるスキルを合わせ、プログラマとして社会に貢献していきたいと考えています。</p>
+            <p class="career-future-txt">現在は『OAシステム開発科』という1年間の職業訓練を受講しています。C言語・Java・SQLなどを学び、仕様書に沿ったプログラムの構築を課題としてこなしつつ、設計についても勉強しております。<br>
+            また、PHPやWordPressの勉強も併用して行っており、これまでの経験と現在学んでいるスキルとを合わせ、プログラマとして社会に貢献していくことを目指しています。</p>
           </section><!-- h3 -->
           
-          <a class="pdf_link u-before_symbol" href="Hiroshi_Koiwa_Portfolio.pdf" target="_blank">
+          <a class="pdf_link u-before_symbol u-en" href="Hiroshi_Koiwa_Portfolio.pdf" target="_blank">
             <p class="pdf_link-txt">
               <!--
               <span class="pdf_link-txt-main u-br">PDF</span>
@@ -163,7 +158,7 @@
                 <span class="u-en">JavaScript + jQuery</span>
               </h3>
               <ul class="skill-detail-list">
-                <li>プログラムの基本理解
+                <li>言語の基本理解
                   <span class="skill-star">
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
@@ -198,7 +193,7 @@
                 <span class="u-en">PHP</span>
               </h3>
               <ul class="skill-detail-list">
-                <li>プログラムの基本理解
+                <li>言語の基本理解
                   <span class="skill-star">
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
@@ -207,7 +202,7 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                   </span>
                 </li>
-                <li>簡易お問い合わせフォームの作成
+                <li>ファイル書き込み・画像アップロード
                   <span class="skill-star">
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
@@ -216,11 +211,11 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                   </span>
                 </li>
-                <li>ファイルの操作
+                <li>簡易ショッピングカートの作成
                   <span class="skill-star">
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
-                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                   </span>
@@ -229,16 +224,16 @@
             </section>
             
             <section class="skill-detail">
-              <h3 class="skill-detail-head c-middle_head u-jp">
+              <h3 class="skill-detail-head c-middle_head u-inline_block_parent">
                 <span class="u-en">SQL</span></span>
                 <span class="u-jp">（データベース）</span>
               </h3>
               <ul class="skill-detail-list">
-                <li>プログラムの基本理解
+                <li>JDBCによるDBへの接続と操作
                   <span class="skill-star">
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
-                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                   </span>
@@ -247,7 +242,7 @@
                   <span class="skill-star">
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
-                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                     <i class="fa fa-star" aria-hidden="true"></i>
                   </span>
@@ -269,7 +264,7 @@
                 <span class="u-en">Java</span>
               </h3>
               <ul class="skill-detail-list">
-                <li>オブジェクト指向についての理解
+                <li>継承・例外の文法に即したプログラミング
                   <span class="skill-star">
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
@@ -278,7 +273,7 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                   </span>
                 </li>
-                <li>Servlet+JSPの理解
+                <li>JSP + Servletでのプログラミング
                   <span class="skill-star">
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
@@ -287,7 +282,7 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                   </span>
                 </li>
-                <li>MVCモデルでの開発
+                <li>コレクションの利用
                   <span class="skill-star">
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
@@ -300,12 +295,12 @@
             </section>
             
             <section class="skill-detail">
-              <h3 class="skill-detail-head c-middle_head u-jp">
+              <h3 class="skill-detail-head c-middle_head u-inline_block_parent">
                 <span class="u-en">C</span>
                 <span class="u-jp">言語</span>
               </h3>
               <ul class="skill-detail-list">
-              <li>手続き型言語の理解
+              <li>構造体を利用したプログラミング
                   <span class="skill-star">
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
@@ -314,7 +309,7 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                   </span>
                 </li>
-                <li>ポインタの活用
+                <li>メモリ破壊を考慮したプログラミング
                   <span class="skill-star">
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
@@ -323,7 +318,7 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                   </span>
                 </li>
-                <li>メモリを意識したアルゴリズムの構築
+                <li>リスト構造の理解
                   <span class="skill-star">
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
@@ -358,7 +353,7 @@
                     <i class="fa fa-star" aria-hidden="true"></i>
                   </span>
                 </li>
-                <li>CSS3でのアニメーション効果
+                <li>CSS3でのアニメーション効果の活用
                   <span class="skill-star">
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>

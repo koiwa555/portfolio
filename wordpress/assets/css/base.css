@@ -228,16 +228,6 @@ utility css
   transform: rotate(.03deg);
 }
 .u-bg-product {
-  background: #e1e8ec;
-  background: #eceff1;
-  background: #dbe3ec;
-  background: #e1e5e8;
-  background: #dde2e6;
-  background: #f9f8f5;
-  background: #e5eaec; /* 元 post 側の値 */
-  background: #e1e8ec;
-  background: #d7e3ea;
-  background: #c6d9e7;
   background: #d7e4ee;
 }
 .u-bg_dark_gray {
@@ -274,7 +264,7 @@ utility css
 component
 -------------------------------------------------- */
 .c-icon {
-  border-radius: 1px;
+  border-radius: 3px;
   color: #fff;
   font-size: 12px;
   margin: 0 .6em 0 0;
