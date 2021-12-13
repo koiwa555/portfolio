@@ -546,9 +546,9 @@ prof
   padding: 0 0 0 1.5em;
 }
 .career-past-list-item_inner {
-  text-indent: 0;
   font-size: 14px;
-  padding: 0.3em 0 0;
+  padding: .3em 0 0;
+  text-indent: 0;
 }
 /* .career-past-list_in_list li {
   padding: 0 0 .1em 1.1em;
@@ -951,7 +951,7 @@ skill
 .skill-detail-head .u-jp {
   display: inline-block;
   font-size: 18px;
-  letter-spacing: 0.1em;
+  letter-spacing: .1em;
   padding: 0 0 1px;
 }
 .skill-detail-head span {

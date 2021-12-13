@@ -194,7 +194,7 @@ article
   font-size: 16px;
   font-weight: bold;
   line-height: 1.4;
-  margin: -0.4em 0 14px;
+  margin: -.4em 0 14px;
   padding: .4em 0 .4em 2.4em;
   position: relative;
 }
@@ -202,8 +202,8 @@ article
 .article dd .wp-block-group p:first-of-type,
 .article dd .wp-block-image figcaption {
   font-size: 15px;
-  padding: 0.4em 0 0.4em 1.8em;
   font-weight: normal;
+  padding: .4em 0 .4em 1.8em;
   text-shadow: 0 0 0 #0e0e0e;
 }
 .article caption::before,
