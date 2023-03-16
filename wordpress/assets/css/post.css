@@ -44,7 +44,7 @@ com color
 .u-post_main_color,
 .article h2,
 .article caption::before,
-.wp-block-group p:first-of-type::before,
+.wp-block-group__inner-container> p:first-of-type::before,
 .wp-block-image figcaption::before {
   background: #0f488a;
 }
@@ -52,7 +52,7 @@ com color
   color: #0f488a;
 }
 .article caption,
-.wp-block-group p:first-of-type,
+.wp-block-group__inner-container> p:first-of-type,
 .wp-block-image figcaption {
   border-bottom: 3px dashed #0f488a;
 }
@@ -179,27 +179,27 @@ article
   max-width: 45em;
   padding: 0 .4em;
 }
-.wp-block-group p:first-of-type {
+.wp-block-group__inner-container> p:first-of-type {
   margin: 0 0 20px;
 }
-.wp-block-group p:first-of-type {
+.wp-block-group__inner-container> p:first-of-type {
   max-width: none;
 }
-.wp-block-group p:not(:first-of-type) {
+.wp-block-group__inner-container> p:not(:first-of-type) {
   margin-bottom: 12px;
 }
 .article caption,
-.wp-block-group p:first-of-type,
+.wp-block-group__inner-container> p:first-of-type,
 .wp-block-image figcaption {
   font-size: 16px;
   font-weight: bold;
   line-height: 1.4;
-  margin: -.4em 0 14px;
+  margin: -.4em 0 18px;
   padding: .4em 0 .4em 2.4em;
   position: relative;
 }
 .article dd caption,
-.article dd .wp-block-group p:first-of-type,
+.article dd .wp-block-group__inner-container> p:first-of-type,
 .article dd .wp-block-image figcaption {
   font-size: 15px;
   font-weight: normal;
@@ -207,7 +207,7 @@ article
   text-shadow: 0 0 0 #0e0e0e;
 }
 .article caption::before,
-.wp-block-group p:first-of-type::before,
+.wp-block-group__inner-container> p:first-of-type::before,
 .wp-block-image figcaption::before {
   content: '';
   display: block;
@@ -218,11 +218,11 @@ article
   top: 50%;
   width: 1.6em;
 }
-.wp-block-group p:first-of-type+ dl {
+.wp-block-group__inner-container> p:first-of-type+ dl {
   margin-top: 0;
 }
 .article dd caption::before,
-.article dd .wp-block-group p:first-of-type::before,
+.article dd .wp-block-group__inner-container> p:first-of-type::before,
 .article dd .wp-block-image figcaption::before {
   height: 1.15em;
   margin: -9px 0 0;
@@ -234,7 +234,9 @@ article
   max-width: 45em;
   padding: 0 .4em;
 }
-.article dd ul,
+.article dd ul {
+  margin: 0 0 20px -0.15em;
+}
 .article dd ol {
   margin: 0 0 20px;
 }
@@ -242,11 +244,13 @@ article
   line-height: 1.6;
 }
 .article ul li {
-  padding: 0 0 0 .9em;
   text-indent: -.9em;
 }
 .article ul li:not(:last-of-type) {
-  padding: 0 0 4px .9em;
+  padding: 0 0 6px .9em;
+}
+.article ul li:last-of-type {
+  padding: 0 0 0 .9em;
 }
 .article ul li::before {
   background: #0e0e0e;
@@ -265,11 +269,16 @@ article
 }
 .article ol li {
   list-style: none;
-  padding: 0 0 0 27px;
   text-indent: -27px;
 }
+.article ol li:not(:last-of-type) {
+  padding: 0 0 8px 27px;
+}
+.article ol li:last-of-type {
+  padding: 0 0 0 27px;
+}
 .article ol li::before {
-  background: #5075a0;
+  background: #4071ad;
   border-radius: 50%;
   box-sizing: border-box;
   color: #fff;
@@ -335,7 +344,7 @@ article
 .article dt {
   font-size: 16px;
   line-height: 1.4;
-  margin: 0 0 .7em;
+  margin: 0 0 .9em;
   padding: 0 0 0 38px;
   position: relative;
   text-shadow: 0 0 0 #0e0e0e, 0 0 0 #0e0e0e;
@@ -358,11 +367,11 @@ article
   top: 50%;
 }
 .article dd {
-  padding: 0 0 1em 40px;
+  padding: 0 0 1.2em 39px;
   position: relative;
 }
 .article dd:not(:last-of-type) {
-  margin: 0 0 1.6em;
+  margin: 0 0 1.7em;
 }
 .article dd> :not(img):not(.wp-block-image):last-child {
   margin-bottom: 0;
@@ -375,6 +384,9 @@ article
   left: 0;
   position: absolute;
   width: 110%;
+}
+.article dd ul+ p {
+  margin: -6px 0 20px;
 }
 .article dd p {
   margin: 0 0 20px;
@@ -435,7 +447,10 @@ article
   }
   .article h2 {
     font-size: 20px;
-    margin: 50px 0 25px;
+    margin: 50px 0 26px;
+  }
+  .article p {
+    margin: 0 0 34px;
   }
   .article p img,
   .article li img,
@@ -452,10 +467,13 @@ article
     margin-top: 30px;
   }
   .article h2 {
-    margin: 40px 0 20px;
+    margin: 40px 0 22px;
+  }
+  .article p {
+    margin: 0 0 30px;
   }
   .article caption,
-  .wp-block-group p:first-of-type {
+  .wp-block-group__inner-container> p:first-of-type {
     font-size: 15px;
   }
   .article table {
@@ -482,7 +500,7 @@ article
     padding: 0 0 0 36px;
   }
   .article dd {
-    padding: 0 0 1em 38px;
+    padding: 0 0 1.2em 37px;
   }
   .article dd .wp-block-image figcaption {
     font-size: 14px;
@@ -499,10 +517,10 @@ article
     font-size: 18px;
   }
   .article dt {
-    margin: 0 0 1em;
+    margin: 0 0 1.2em;
   }
   .article dd {
-    padding: 0 0 .8em .4em;
+    padding: 0 0 1.2em .4em;
   }
   .article p img,
   .article li img,
@@ -598,29 +616,30 @@ slide_nav
 .page_nav a {
   display: block;
   font-size: 13px;
-  padding: 12px 1.5em 10px 1em;
+  line-height: 1.4;
+  min-height: 45px;
+  padding: 14px 18px 12px 26px;
   position: relative;
   transition: color .2s ease-in-out;
 }
-.page_nav a.is-current,
+.page_nav li.is-current a,
 .page_nav a:hover {
   color: #e60b29;
 }
-.page_nav a::before {
+.page_nav li::before {
   background: #e60b29;
   content: '';
   display: inline-block;
   height: 8px;
   left: 0;
-  line-height: 1.0;
-  margin: 0 .5em 0 0;
-  position: relative;
-  top: -.05em;
+  margin: 18px 0 0 13px;
+  position: absolute;
+  top: 0;
   vertical-align: middle;
   visibility: hidden;
   width: 8px;
 }
-.page_nav a.is-current::before {
+.page_nav li.is-current::before {
   visibility: visible;
 }
 .slide_nav-toggle_btn {

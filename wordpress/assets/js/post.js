@@ -9,7 +9,7 @@ var setDisplayCurrentNavOptions = function() {
     // querySelectorAll() で一括取得できるのでカンマ繋ぎで指定する
     target: 'h2, h3, h4, h5, h6',
     // 現在値を表示するための li の子要素にあたるアンカーを指定する
-    anchor: '#pageNav a',
+    anchor: '#pageNav li',
     // range を指定して最初に合致した要素を利用する…という仕組み
     adjust: [
       { // PC

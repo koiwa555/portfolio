@@ -59,17 +59,17 @@
           $slug = $post->post_name;
           $url = home_url();
           
-          // [0] ： [D:\Documents\Tasks\xampp\htdocs\koiwapf_wp/]
+          // [0] ： [D:\Documents\Tasks\xampp\htdocs\koiwa555_wp/]
           // [1] ： [wp-content/themes/own]
           $path = explode('/wp-content', get_template_directory());
           $demo_dir = '/demo/' . $slug . '/';
           
           // ディレクトリ
-          // D:\Documents\Tasks\xampp\htdocs\koiwapf_wp/demo/js_smooth_scroll/
+          // D:\Documents\Tasks\xampp\htdocs\koiwa555_wp/demo/js_smooth_scroll/
           // echo $path[0] . $demo_dir;
           
           // URL
-          // http://localhost/koiwapf_wp/demo/js_smooth_scroll/
+          // http://localhost/koiwa555_wp/demo/js_smooth_scroll/
           // echo home_url() . $demo_dir;
           
           // GitHub の URL

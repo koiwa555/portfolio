@@ -89,7 +89,7 @@
                 <h3 class="prof-intro-head c-middle_head u-jp">小岩 洋志<span>（コイワ ヒロシ）</span></h3>
                 <dl class="prof-intro-list">
                   <dt>年齢：</dt>
-                  <dd>35歳</dd>
+                  <dd>37歳</dd>
                   <dt>性別：</dt>
                   <dd>男</dd>
                   <dt>趣味：</dt>
@@ -118,14 +118,25 @@
               <li class="career-past-list-item">④ Webデザイナーとして約4年ほど従事
                 <p class="career-past-list-item_inner">デザインよりもプログラミングに楽しさを見い出すようになり、独学でJavaScriptやPHPについて勉強を続けておりました。</p>
               </li>
+              
+              
+              <li class="career-past-list-item">⑤ 1年間プログラミングの職業訓練を受講
+                <p class="career-past-list-item_inner">C言語・Java・SQLなどを学び、設計と仕様書に沿ったプログラムの構築について学びました。</p>
+              </li>
+              <li class="career-past-list-item">④ プログラマとして約9カ月ほど従事
+                <p class="career-past-list-item_inner">Vue.js+TypeScript（Class Style）でのアプリケーション開発にて、機能の実装とデザインの改善を行いました。</p>
+              </li>
+              
             </ol>
           </section><!-- h3 -->
           <section class="career-future u-border_bright_gray">
             <h3 class="career-future-head c-middle_head u-jp">
               <span class="career-future-head-inner u-hiragana">これから<span class="u-en u-block">From now on</span></span>
             </h3>
-            <p class="career-future-txt">現在は『OAシステム開発科』という1年間の職業訓練を受講しています。C言語・Java・SQLなどを学び、仕様書に沿ったプログラムの構築を課題としてこなしつつ、設計についても勉強しております。<br>
-            また、PHPやWordPressの勉強も併用して行っており、これまでの経験と現在学んでいるスキルとを合わせ、プログラマとして社会に貢献していくことを目指しています。</p>
+            <p class="career-future-txt">
+              現在は前職のプロジェクトで携わったVue.jsとTypeScriptについて理解を深めるため、就職活動の合間に勉強しております。いずれは同プロジェクトのAPIの言語であったNestJsも学んでいきたいと考えています。<br>
+              これまでの経験と現在学んでいるスキルとを合わせ、フロント・バックエンド双方に対応できるプログラマとして、社会に貢献していくことを目指しています。
+            </p>
           </section><!-- h3 -->
           
           <a class="pdf_link u-before_symbol u-en" href="Hiroshi_Koiwa_Portfolio.pdf" target="_blank">
@@ -177,6 +188,76 @@
                   </span>
                 </li>
                 <li>ajaxでのデータの受け渡し
+                  <span class="skill-star">
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </span>
+                </li>
+              </ul>
+            </section>
+            
+            <section class="skill-detail">
+              <h3 class="skill-detail-head c-middle_head u-jp">
+                <span class="u-en">Vue.js + TypeScript (Class Style)</span>
+              </h3>
+              <ul class="skill-detail-list">
+                <li>基本理解
+                  <span class="skill-star">
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </span>
+                </li>
+                <li>Vuetifyの活用
+                  <span class="skill-star">
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </span>
+                </li>
+                <li>共通コンポーネントの作成
+                  <span class="skill-star">
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </span>
+                </li>
+              </ul>
+            </section>
+            
+            <section class="skill-detail">
+              <h3 class="skill-detail-head c-middle_head u-jp">
+                <span class="u-en">AWS</span>
+              </h3>
+              <ul class="skill-detail-list">
+                <li>各サービスの基本理解
+                  <span class="skill-star">
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </span>
+                </li>
+                <li>ネットワークの構築
+                  <span class="skill-star">
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </span>
+                </li>
+                <li>サーバーの構築
                   <span class="skill-star">
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
                     <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
@@ -260,6 +341,41 @@
             </section>
             
             <section class="skill-detail">
+              <h3 class="skill-detail-head c-middle_head u-inline_block_parent">
+                <span class="u-en">Wordpress</span></span>
+              </h3>
+              <ul class="skill-detail-list">
+                <li>基本理解
+                  <span class="skill-star">
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </span>
+                </li>
+                <li>自作テーマの作成
+                  <span class="skill-star">
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </span>
+                </li>
+                <li>プラグインの活用
+                  <span class="skill-star">
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star u-font_yellow" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                    <i class="fa fa-star" aria-hidden="true"></i>
+                  </span>
+                </li>
+              </ul>
+            </section>
+            
+            <section class="skill-detail">
               <h3 class="skill-detail-head c-middle_head u-jp">
                 <span class="u-en">Java</span>
               </h3>
@@ -332,7 +448,7 @@
             
             <section class="skill-detail">
               <h3 class="skill-detail-head c-middle_head u-jp">
-                <span class="u-en">HTML5 + CSS3</span>
+                <span class="u-en">HTML LS + CSS3</span>
               </h3>
               <ul class="skill-detail-list">
                 <li>タグ要素とCSSの理解
@@ -406,11 +522,11 @@
               </h3>
               <dl class="skill-detail-list">
                 <dt>OS<span>：</span></dt>
-                <dd>Windows 10</dd>
+                <dd>Windows 10・CentOS 7</dd>
                 <dt>Git<span>：</span></dt>
-                <dd>Sourcetree・GitHub</dd>
-                <dt>PHP<span>：</span></dt>
-                <dd>XAMPP</dd>
+                <dd>コマンドライン・GitHub・Sourcetree</dd>
+                <dt>その他<span>：</span></dt>
+                <dd>XAMPP・MySQL Workbench</dd>
                 <dt>エディタ<span>：</span></dt>
                 <dd>Visual Studio Code・Dreamweaver</dd>
               </dl>

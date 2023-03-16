@@ -292,7 +292,7 @@ com color
 }
 h2,
 caption::before,
-.wp-block-group p:first-of-type::before,
+.wp-block-group__inner-container> p:first-of-type::before,
 .wp-block-image figcaption::before {
   background: #0f488a;
 }
@@ -300,7 +300,7 @@ dt::before {
   color: #0f488a;
 }
 caption,
-.wp-block-group p:first-of-type,
+.wp-block-group__inner-container> p:first-of-type,
 .wp-block-image figcaption {
   border-bottom: 3px dashed #0f488a;
 }
@@ -373,21 +373,21 @@ p {
 caption {
   margin: 0 0 14px;
 }
-.wp-block-group p:first-of-type {
+.wp-block-group__inner-container> p:first-of-type {
   margin: 0 0 24px;
 }
 caption,
-.wp-block-group p:first-of-type,
+.wp-block-group__inner-container> p:first-of-type,
 .wp-block-image figcaption {
   font-size: 16px;
   font-weight: bold;
   line-height: 1.4;
-  margin: -0.4em 0 14px;
+  margin: -.4em 0 18px;
   padding: .4em 0 .4em 2.4em;
   position: relative;
 }
 dd caption,
-dd .wp-block-group p:first-of-type,
+dd .wp-block-group__inner-container> p:first-of-type,
 dd .wp-block-image figcaption {
   font-size: 15px;
   padding: 0.4em 0 0.4em 1.8em;
@@ -395,7 +395,7 @@ dd .wp-block-image figcaption {
   text-shadow: 0 0 0 #0e0e0e;
 }
 caption::before,
-.wp-block-group p:first-of-type::before,
+.wp-block-group__inner-container> p:first-of-type::before,
 .wp-block-image figcaption::before {
   content: '';
   display: block;
@@ -406,20 +406,20 @@ caption::before,
   top: 50%;
   width: 1.6em;
 }
-.wp-block-group p:first-of-type+ dl {
+.wp-block-group__inner-container> p:first-of-type+ dl {
   margin-top: 0;
 }
 dd caption::before,
-dd .wp-block-group p:first-of-type::before,
+dd .wp-block-group__inner-container> p:first-of-type::before,
 dd .wp-block-image figcaption::before {
   height: 1.15em;
   margin: -9px 0 0;
   width: 1.15em;
 }
-.wp-block-group p:first-of-type {
+.wp-block-group__inner-container> p:first-of-type {
   max-width: none;
 }
-.wp-block-group p:not(:first-of-type) {
+.wp-block-group__inner-container> p:not(:first-of-type) {
   margin-bottom: 12px;
 }
 ul,
@@ -428,7 +428,9 @@ ol {
   max-width: 45em;
   padding: 0 .4em;
 }
-dd ul,
+dd ul.wp-block {
+  margin: 0 0 20px -0.15em;
+}
 dd ol {
   margin: 0 0 20px;
 }
@@ -436,11 +438,13 @@ li {
   line-height: 1.6;
 }
 ul li {
-  padding: 0 0 0 .9em;
   text-indent: -.9em;
 }
 ul li:not(:last-of-type) {
-  padding: 0 0 4px .9em;
+  padding: 0 0 6px .9em;
+}
+ul li:last-of-type {
+  padding: 0 0 0 .9em;
 }
 ul li::before {
   background: #0e0e0e;
@@ -454,16 +458,24 @@ ul li::before {
   vertical-align: middle;
   width: 5px;
 }
+ul li div {
+  display: inline;
+}
 ol {
   counter-reset: ol-counter;
 }
 ol li {
   list-style: none;
-  padding: 0 0 0 27px;
   text-indent: -27px;
 }
+ol li:not(:last-of-type) {
+  padding: 0 0 8px 27px;
+}
+ol li:last-of-type {
+  padding: 0 0 0 27px;
+}
 ol li::before {
-  background: #5075a0;
+  background: #4071ad;
   border-radius: 50%;
   box-sizing: border-box;
   color: #fff;
@@ -483,6 +495,9 @@ ol li::before {
 }
 ol li:nth-of-type(1)::before {
   padding: 2px 0 0 0;
+}
+ol li div {
+  display: inline;
 }
 table {
   border: 1px solid #9ca9af;
@@ -528,7 +543,7 @@ dd {
 dt {
   font-size: 16px;
   line-height: 1.4;
-  margin: 0 0 .7em;
+  margin: 0 0 .9em;
   padding: 0 0 0 38px;
   position: relative;
   text-shadow: 0 0 0 #0e0e0e, 0 0 0 #0e0e0e;
@@ -551,11 +566,11 @@ dt::before {
   top: 50%;
 }
 dd {
-  padding: 0 0 1em 40px;
+  padding: 0 0 1.2em 39px;
   position: relative;
 }
 dd:not(:last-of-type) {
-  margin: 0 0 1.6em;
+  margin: 0 0 1.7em;
 }
 dd> :not(img):not(.wp-block-image):last-child {
   margin-bottom: 0;
@@ -568,6 +583,9 @@ dd:after {
   left: 0;
   position: absolute;
   width: 110%;
+}
+dd ul+ p {
+  margin: -6px 0 20px;
 }
 dd p {
   margin: 0 0 20px;
@@ -624,7 +642,10 @@ li :last-child {
   }
   h2 {
     font-size: 20px;
-    margin: 50px 0 25px;
+    margin: 50px 0 26px;
+  }
+  p {
+    margin: 0 0 34px;
   }
   p img,
   li img,
@@ -638,10 +659,13 @@ li :last-child {
     font-size: 26px;
   }
   h2 {
-    margin: 40px 0 20px;
+    margin: 40px 0 22px;
+  }
+  p {
+    margin: 0 0 30px;
   }
   caption,
-  .wp-block-group p:first-of-type {
+  .wp-block-group__inner-container> p:first-of-type {
     font-size: 15px;
   }
   table {
@@ -665,7 +689,7 @@ li :last-child {
     padding: 0 0 0 36px;
   }
   dd {
-    padding: 0 0 1em 38px;
+    padding: 0 0 1.2em 37px;
   }
   dd .wp-block-image figcaption {
     font-size: 14px;
@@ -682,10 +706,10 @@ li :last-child {
     font-size: 18px;
   }
   dt {
-    margin: 0 0 1em;
+    margin: 0 0 1.2em;
   }
   dd {
-    padding: 0 0 .8em .4em;
+    padding: 0 0 1.2em .4em;
   }
   p img,
   li img,

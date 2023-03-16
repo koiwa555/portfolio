@@ -101,7 +101,7 @@ component
   border-left: none;
   border-right: none;
   font-size: inherit;
-  height: 3.8em;
+  height: 60px;
   line-height: 1.4;
   margin: 0 0 16px;
   position: relative;
@@ -126,6 +126,9 @@ component
   .c-middle_head.u-en,
   .c-middle_head .u-en {
     font-size: 18px;
+  }
+  .c-small_head {
+    height: 58px;
   }
 }
 @media screen and (max-width: 583px) {
@@ -155,26 +158,28 @@ project
 .p-content {
   /* [抜粋] のテキストの高さを揃えるために必要 */
   display: flex;
-  width: 32%;
+  width: 31.3333%;
 }
 .p-content:not(:nth-of-type(3n)) {
-  margin: 0 2% 2% 0;
+  margin: 0 3% 3% 0;
 }
 .p-content:nth-of-type(3n) {
-  margin: 0 0 2% 0;
+  margin: 0 0 3% 0;
 }
 .p-content a {
   background: #fff;
   display: block;
   padding: 10px 5% 12px;
   position: relative;
-  transition: box-shadow .15s ease-out, transform .15s ease-out;
+  transition: box-shadow .12s ease-out, transform .12s ease-out;
   width: 100%;
   z-index: 1;
 }
 .p-content a:hover {
   box-shadow: 0 0 6px 2px rgb(0 0 0 / 60%);
-  transform: scale(1.025);
+  
+  box-shadow: 0 0 7px 4px rgba(0, 0, 0, .25), 0 0 0px 1px rgba(0, 0, 0, .2);
+  transform: scale(1.04);
   z-index: 2;
 }
 .p-content-detail {

@@ -284,7 +284,7 @@ component
   width: 220px;
 }
 .c-btn:hover {
-  opacity: .5;
+  opacity: .7;
 }
 .c-btn-up_arrow {
   padding: 0 0 0 .4em;
@@ -346,7 +346,7 @@ component
   width: 12px;
 }
 .c-btn_circle:hover {
-  opacity: .5;
+  opacity: .7;
 }
 
 
